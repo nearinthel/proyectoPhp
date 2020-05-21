@@ -29,4 +29,11 @@ class ControladorAnuncio implements IControladorAnuncio {
         return $this->instance;
         
     }
+    
+    public function aceptarAnuncio($param){
+        
+    }
+    public function ingresarAnuncio($param){
+        
+    }
 }

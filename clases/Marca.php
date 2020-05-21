@@ -17,23 +17,23 @@ class Marca {
     private $entrada;
     private $salida;
     
-    function __construct() {
+    public function __construct() {
         
     }
     
-    function getEntrada() {
+    public function getEntrada() {
         return $this->entrada;
     }
 
-    function getSalida() {
+    public function getSalida() {
         return $this->salida;
     }
 
-    function setEntrada($entrada) {
+    public function setEntrada($entrada) {
         $this->entrada = $entrada;
     }
 
-    function setSalida($salida) {
+    public function setSalida($salida) {
         $this->salida = $salida;
     }
 

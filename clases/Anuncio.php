@@ -16,36 +16,42 @@ class Anuncios {
     private $descripcion;
     private $nroAnuncio;
     private $id;
+    
+    public function __construct() {
+        
+    }
             
-    function getDescripcion() {
+    public function getDescripcion() {
         return $this->descripcion;
     }
 
-    function getNroAnuncio() {
+    public function getNroAnuncio() {
         return $this->nroAnuncio;
     }
 
-    function setDescripcion($descripcion) {
+    public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
     }
 
-    function setNroAnuncio($nroAnuncio) {
+    public function setNroAnuncio($nroAnuncio) {
         $this->nroAnuncio = $nroAnuncio;
     }
     
-    function getId() {
+    public function getId() {
         return $this->id;
     }
 
-    function setId($id) {
+    public function setId($id) {
         $this->id = $id;
+    }
+    
+    public function borrarInconsistencia() {
+        
     }
 
     
         
-    function __construct() {
-        
-    }
+
 
     //put your code here
 }

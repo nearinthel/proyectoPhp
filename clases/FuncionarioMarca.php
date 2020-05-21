@@ -17,16 +17,20 @@ class FuncionarioMarca {
     
     private $inconsistencia;
     
-    function __construct() {
+    public function __construct() {
         
     }
     
-    function getInconsistencia() {
+    public function getInconsistencia() {
         return $this->inconsistencia;
     }
 
-    function setInconsistencia($inconsistencia) {
+    public function setInconsistencia($inconsistencia) {
         $this->inconsistencia = $inconsistencia;
+    }
+    
+    public function removerIncosistencia() {
+        
     }
 
 

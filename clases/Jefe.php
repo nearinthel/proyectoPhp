@@ -13,4 +13,12 @@
  */
 class Jefe extends Funcionario{
     //put your code here
+    
+    public function crearAnuncio($descripcion) {
+        
+    }
+    
+    public function verFuncionario($registro) {
+        
+    }
 }

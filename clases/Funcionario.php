@@ -22,64 +22,64 @@ class Funcionario {
     protected $cargo;
     protected $horario;
     
-    function __construct() {
+    public function __construct() {
         
     }
 
     
-    function getRegistro() {
+    public function getRegistro() {
         return $this->registro;
     }
 
-    function getCi() {
+    public function getCi() {
         return $this->ci;
     }
 
-    function getNombre() {
+    public function getNombre() {
         return $this->nombre;
     }
 
-    function getApellido() {
+    public  function getApellido() {
         return $this->apellido;
     }
 
-    function getFnac() {
+    public function getFnac() {
         return $this->fnac;
     }
 
-    function getCargo() {
+    public function getCargo() {
         return $this->cargo;
     }
 
-    function getHorario() {
+    public function getHorario() {
         return $this->horario;
     }
 
-    function setRegistro($registro) {
+    public function setRegistro($registro) {
         $this->registro = $registro;
     }
 
-    function setCi($ci) {
+    public function setCi($ci) {
         $this->ci = $ci;
     }
 
-    function setNombre($nombre) {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
     }
 
-    function setApellido($apellido) {
+    public function setApellido($apellido) {
         $this->apellido = $apellido;
     }
 
-    function setFnac($fnac) {
+    public function setFnac($fnac) {
         $this->fnac = $fnac;
     }
 
-    function setCargo($cargo) {
+    public function setCargo($cargo) {
         $this->cargo = $cargo;
     }
 
-    function setHorario($horario) {
+    public function setHorario($horario) {
         $this->horario = $horario;
     }
 

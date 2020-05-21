@@ -28,6 +28,16 @@ class ControladorFuncionario implements IControladorFuncionario {
         return $this->instance;
         
     }
+    
+    public function ingresarFuncionario($param){
+        
+    }
+    public function ingresarMarca($param){
+        
+    }
+    public function ingresarSistema($param){
+        
+    }
 
 
 

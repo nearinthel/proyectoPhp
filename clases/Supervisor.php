@@ -13,4 +13,7 @@
  */
 class Supervisor extends Funcionario{
     //put your code here
+    public function aceptarAnuncio($idAnuncio) {
+        
+    }
 }

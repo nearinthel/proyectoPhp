@@ -7,16 +7,10 @@
  */
 
 /**
- * Description of Empleado
+ * Description of DTMarca
  *
  * @author Alberto Damelles
  */
-class Empleado extends Funcionario{
+class DTMarca {
     //put your code here
-    private $supervisor;
-    
-    public function getSupervisor(){
-        return $this->supervisor;
-        
-    }
 }
