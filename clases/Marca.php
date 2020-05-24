@@ -1,5 +1,5 @@
 <?php
-
+include("../DataTypes/numES.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,23 +14,24 @@
 class Marca {
     //put your code here
     
-    private $entrada;
-    private $salida;
+    private $hora;
+    private $tipo;
     
-    public function __construct() {
-        
+    public function __construct($h, $t) {
+        $this->hora = h;
+        $this->tipo = t;
     }
     
-    public function getEntrada() {
-        return $this->entrada;
+    public function getTipo() {
+        return $this->enumES::$this->tipo;
     }
 
-    public function getSalida() {
-        return $this->salida;
+    public function getHora() {
+        return $this->hora;
     }
 
-    public function setEntrada($entrada) {
-        $this->entrada = $entrada;
+    public function setHora($h) {
+        $this->entrada = $h;
     }
 
     public function setSalida($salida) {

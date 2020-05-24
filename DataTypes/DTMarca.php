@@ -11,6 +11,21 @@
  *
  * @author Alberto Damelles
  */
+include ("enumES.php");
 class DTMarca {
-    //put your code here
+    private $hora;
+    private $tipo;
+
+    public __construct($h,$t){
+        $this->hora = $h;
+        $this->tipo = $t;
+    }
+    public getTipo(){
+        return enumES::$this->tipo;
+    }
+
+    public getHora(){
+        return $this->hora;
+    }
+
 }

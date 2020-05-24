@@ -12,5 +12,12 @@
  * @author Alberto Damelles
  */
 class DTIncosistencia {
-    //put your code here
+    private $hora;
+    private $dtM;
+
+    function __construct($h,$data){
+        $this->hora = $h;
+        $this->dtm = $data;
+    }
+
 }
