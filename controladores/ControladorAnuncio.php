@@ -16,18 +16,19 @@ include 'Anuncio.php';
 class ControladorAnuncio implements IControladorAnuncio {
     //put your code here
     
-    private $instance = null;
+    private static $instance;
     
     private function __construct() {
         
     }
     
-    public function getInstance(){
-        if (!isset($this->instance)){
-            $this->instance=new $this->ControladorAnuncio();
+    public static function getInstance()
+    {
+        if (!self::$instance instanceof self) {
+            self::$instance = new self();
         }
-        return $this->instance;
-        
+
+        return self::$instance;
     }
     
     public function aceptarAnuncio($param){

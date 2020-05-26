@@ -18,7 +18,7 @@ class FuncionarioMarca {
     private $inconsistencia;
     
     public function __construct($dtIn) {
-        $this->$nconsistencia = $dtIn;
+        $this->inconsistencia = $dtIn;
     }
     
     public function getInconsistencia() {

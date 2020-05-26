@@ -15,18 +15,20 @@ include 'Funcionario.php';
  */
 class ControladorFuncionario implements IControladorFuncionario {
     
-    private $instance = null;
+    private static $instance;
     
     private function __construct() {
         
     }
     
-    public function getInstance(){
-        if (!isset($this->instance)){
-            $this->instance=new $this->ControladorFuncionario();
+   
+    public static function getInstance()
+    {
+        if (!self::$instance instanceof self) {
+            self::$instance = new self();
         }
-        return $this->instance;
-        
+
+        return self::$instance;
     }
     
     public function ingresarFuncionario($param){

@@ -19,6 +19,7 @@ class Funcionario {
     protected $nombre;
     protected $apellido;
     protected $fnac;
+    protected $fing;
     protected $cargo;
     protected $horario;
     
@@ -82,6 +83,17 @@ class Funcionario {
     public function setHorario($horario) {
         $this->horario = $horario;
     }
+    
+    
+    function getFing() {
+        return $this->fing;
+    }
+
+    function setFing($fing) {
+        $this->fing = $fing;
+    }
+
+
 
 
                 

@@ -18,8 +18,8 @@ class Marca {
     private $tipo;
     
     public function __construct($h, $t) {
-        $this->hora = h;
-        $this->tipo = t;
+        $this->hora = $h;
+        $this->tipo = $t;
     }
     
     public function getTipo() {

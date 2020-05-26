@@ -16,15 +16,15 @@ class DTMarca {
     private $hora;
     private $tipo;
 
-    public __construct($h,$t){
+    public function __construct($h,$t){
         $this->hora = $h;
         $this->tipo = $t;
     }
-    public getTipo(){
+    public function getTipo(){
         return enumES::$this->tipo;
     }
 
-    public getHora(){
+    public function getHora(){
         return $this->hora;
     }
 
