@@ -11,14 +11,19 @@
  *
  * @author Alberto Damelles
  */
+include("Marca.php");
 class FuncionarioMarca {
     
     //put your code here
-    
+    private $func;
+    private $marca;
     private $inconsistencia;
     
-    public function __construct($dtIn) {
-        $this->$nconsistencia = $dtIn;
+    public function __construct() {
+    }
+
+    public function getFuncionario(){
+        return $this->func;
     }
     
     public function getInconsistencia() {
@@ -33,6 +38,21 @@ class FuncionarioMarca {
         $this->inconsistencia = null;
     }
 
-
+    public function setFuncionario($f){
+        $this->func = $f;
+    }
+    public function getFuncionario(){
+        return $this->func;
+    }
+    public function setMarca($m){
+        $this->marca = $m;
+    }
+    public function getMarca(){
+        return $this->marca;
+    }
+    public function crearMarca($hora,$t){
+        $m = new Marcar($hora,$t);
+        $this->marca = $m;
+    }   
 
 }

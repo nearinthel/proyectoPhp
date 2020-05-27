@@ -12,9 +12,14 @@
  * @author Alberto Damelles
  */
 class DTHorarios {
-    //put your code here
+    //despues lo hago enumerado
     
-    private $fijo;
+    private $fijo = array(array("Lunes",date(8:0:0),date(16:0:0)),
+                    array("Martes",date(8:0:0),date(16:0:0)),
+                    array("Miercoles",date(8:0:0),date(16:0:0)),
+                    array("Jueves",date(8:0:0),date(16:0:0)),
+                    array("Viernes",date(8:0:0),date(16:0:0))
+                );
     private $rotativo;
     
     function __construct() {

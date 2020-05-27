@@ -10,7 +10,12 @@
  * Description of Funcionario
  *
  * @author Alberto Damelles
+ * 
+ * 
+ * falta funcion para ingresar licencia
+ * 
  */
+include("FuncionarioMarca.php");
 class Funcionario {
     //put your code here
     
@@ -21,7 +26,8 @@ class Funcionario {
     protected $fnac;
     protected $cargo;
     protected $horario;
-    
+    protected $fM;
+
     public function __construct() {
         
     }
@@ -83,7 +89,19 @@ class Funcionario {
         $this->horario = $horario;
     }
 
+    function ingresarMarca($hora,$tipo){
+        //el tipo lo ingresa el que hace la marca
+        $fm = new FuncionarioMarca();
+        $fm->setFuncionario($this);
+        $fm->crearMarca($hora,$tipo);
+        $this->fM =$fm;
 
-                
+    }
+
+    function verificarInconsistencia($hora){
+    //inconsistencias:llegar tarde, irte antes, horas extras
+    //     
+        
+    }           
                 
 }

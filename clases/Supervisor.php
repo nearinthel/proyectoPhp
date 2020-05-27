@@ -12,8 +12,14 @@
  * @author Alberto Damelles
  */
 class Supervisor extends Funcionario{
-    //put your code here
+    private $anuncios;//lista de anuncios a aprobar
+
     public function aceptarAnuncio($idAnuncio) {
-        
+        $i = 0;
+        while($idAnuncio != $anuncios[$i].getId()){
+            $i++;
+        }
+        //revisar memoria
+        unset($anuncios[$i]);
     }
 }
