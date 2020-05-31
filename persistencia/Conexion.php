@@ -14,7 +14,7 @@
 class Conexion {
     //put your code here
     private static $instance;
-    protected $conexion;
+    private $conexion;
 
 
     private function __construct() {
@@ -22,7 +22,7 @@ class Conexion {
 	$host="localhost";
 	$user="root";
 	$pass="12345";
-	$bd="proyectoPHP";
+	$bd="proyectophp";
 	$con = new mysqli($host,$user,$pass, $bd);
 	//mysqli_select_db($con,$bd);
 	//if (mysqli_connect_errno($con))
@@ -35,7 +35,7 @@ class Conexion {
 
     }
     
-    function getConexion() {
+    public function getConexion() {
         return $this->conexion;
     }
 
@@ -57,8 +57,18 @@ class Conexion {
     }
     
     public function query($sql){
-        $resultado=$this->query($sql);
-        return $resultado;
+       if ( $this->conexion->query($sql)===FALSE){
+           throw new Exception("No se pudo ejecutar la query");
+       }
+       
+                    
+       //return $resultado;
+    }
+    
+    public function select($sql){
+       $resultado=$this->conexion->query($sql);
+               
+       return $resultado;
     }
     
     
