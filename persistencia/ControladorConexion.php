@@ -21,8 +21,6 @@ include 'tblMarca.php';
         
 
 class ControladorConexion implements iControladorConexion {
-    //put your code here
-    //private $con;
     private static $instance;
     
     private function __construct() {      
@@ -135,14 +133,6 @@ class ControladorConexion implements iControladorConexion {
         
     }
     
-    
-    
-    /*public function insertAcepta($registro, $nroAnuncio){
-        $sql="insert into anuncio (regSup, nroAnuncio) values ('$registro','$nroAnuncio')";
-        $this->con->query($sql);
-        
-    }*/
-    
     public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia){
         $tabla= tblAnuncio::getInstance();
         $consulta=$tabla->insert($hora, $registro, $tipoMarca, $inconsistencia);
@@ -159,14 +149,37 @@ class ControladorConexion implements iControladorConexion {
         
     }
     
-    /*public function insertJustifica($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia){
-        $tabla= tblAnuncio::getInstance();
-        $consulta=$tabla->insert($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia);
+    public function justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
         
-    }*/
+    }
     
+    public function noJustificar($nroAnuncio, $hora, $registro, $tipoMarca){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->noJustificar($nroAnuncio, $hora, $registro, $tipoMarca);
+        $conexion=$this->getConexion();
+        $conexion->query($consulta);
+  
+    }
+    
+    public function aceptarAnuncio($regSup, $nroAnuncio){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->aceptarAnuncio($regSup, $nroAnuncio);
+        $conexion=$this->getConexion();
+        $conexion->query($consulta);
+    }
+    
+    public function noAceptarAnuncio($regSup, $nroAnuncio){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->noAceptarAnuncio($regSup, $nroAnuncio);
+        $conexion=$this->getConexion();
+        $conexion->query($consulta);
+    }
+    
+   
 }
 
 

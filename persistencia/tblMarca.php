@@ -29,15 +29,18 @@ class tblMarca {
         return self::$instance;
     }
      public function insert($hora, $registro, $tipo, $inconsistencia){
+         
+        $hora=$hora->format('H:i:s');
              
         $sql ="insert into marca (hora, registro, tipoMarca, inconsistencia) values ("
                 . "'$hora', '$registro', '$tipo', '$inconsistencia')";
-        
-        
+               
         return $sql;
     }
   
     public function update($hora, $registro, $tipo, $inconsistencia){
+        
+        $hora=$hora->format('H:i:s');
         
         $sql="update marca set hora='$hora', registro='$registro', tipoMarca='$tipo', inconsistencia='$inconsistencia'"
                 . "where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
@@ -45,6 +48,9 @@ class tblMarca {
     }
     
     public function delete($hora, $registro, $tipo){
+        
+        $hora=$hora->format('H:i:s');
+        
         $sql="delete from marca where where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
         
         return $sql;
