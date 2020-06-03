@@ -11,9 +11,13 @@
  *
  * @author Alberto Damelles
  */
-class Supervisor extends Funcionario{
+class Supervisor extends Funcionario implements SplObserver{
     //put your code here
     public function aceptarAnuncio($idAnuncio) {
+        
+    }
+    
+    public function update(SplSubject $subject){
         
     }
 }
