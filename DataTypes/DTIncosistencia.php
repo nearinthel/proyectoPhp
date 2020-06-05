@@ -11,13 +11,23 @@
  *
  * @author Alberto Damelles
  */
+include("DTMarca.php");
 class DTIncosistencia {
     private $hora;
     private $dtM;
 
     function __construct($h,$data){
-        $this->hora = $h;
+        $this->hora = $h;//hora del turno
         $this->dtm = $data;
     }
+
+    function getHora(){
+        return $this->hora;
+    }
+
+    function getDTM(){
+        return $this->dtm;
+    }
+
 
 }

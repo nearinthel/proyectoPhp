@@ -18,8 +18,9 @@ class Marca {
     private $tipo;
     
     public function __construct($h, $t) {
-        $this->hora = $h;
-        $this->tipo = $t;
+        //h debe ser en tipo DateTime para que ande lo demas
+        $this->hora = h;
+        $this->tipo = t;
     }
     
     public function getTipo() {

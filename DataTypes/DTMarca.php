@@ -13,12 +13,13 @@
  */
 include ("enumES.php");
 class DTMarca {
-    private $hora;
+    private $hora;//la hora se debe crear con datetime
     private $tipo;
 
-    public function __construct($h,$t){
+    public function __construct($h,$t)
+    {
         $this->hora = $h;
-        $this->tipo = $t;
+        $this->tipo= $t;
     }
     public function getTipo(){
         return enumES::$this->tipo;

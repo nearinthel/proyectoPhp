@@ -11,28 +11,62 @@
  *
  * @author Alberto Damelles
  */
+include("Marca.php");
+include("../DataType/DTIncosistencia.php");
+include("Funcionario.php");
 class FuncionarioMarca {
     
-    //put your code here
+    //diff para calcular las diff
+    private $func;
+    private $marca;
+    private $inconsistencia = null;
     
-    private $inconsistencia;
-    
-    public function __construct($dtIn) {
-        $this->inconsistencia = $dtIn;
+    public function __construct() {
+    }
+
+    public function getFuncionario(){
+        return $this->func;
     }
     
     public function getInconsistencia() {
         return $this->inconsistencia;
     }
 
-    public function setInconsistencia($inconsistencia) {
-        $this->inconsistencia = $inconsistencia;
+    public function crearInconsistencia()//para marcar las inconsistencias
+    {   //por ahora solo turno fijo no verifica si hay marca
+        if($this->marca->getTipo==0){
+            if($this->marca->getHora()->format('%h')>8){
+                $dtm = new DTMarca($this->marca->getHora(),enumES::Entrada);
+                $inc = new DTIncosistencia($this->marca->getHora(),$dtm);//se repite la info
+                $this->inconsistencia = $inc;
+            };
+        }else {//caso de fuera de hora
+            if($this->marca->getHora()->format('%h')>16){
+                $dtm = new DTMarca($this->marca->getHora(),enumES::Salida);
+                $inc = new DTIncosistencia($this->marca->getHora(),$dtm);//se repite la info
+                $this->inconsistencia = $inc;
+            };
+        }    
     }
     
     public function removerIncosistencia() {
-        $this->inconsistencia = null;
+        unset($this->inconsistencia);
     }
 
+    public function setFuncionario($f){
+        $this->func = $f;
+    }
 
+    public function setMarca($m){
+        $this->marca = $m;
+    }
+    public function getMarca(){
+        return $this->marca;
+    }
+    public function crearMarca($hora,$t){
+        //crea la marca y la asiga al funcionario
+        $m = new Marcar($hora,$t);
+        $this->marca = $m;
+    }   
 
 }

@@ -13,19 +13,17 @@ include 'Funcionario.php';
  *
  * @author Alberto Damelles
  */
+include 'FuncionarioMarca.php';
+include 'enumES.php';
+
+
 class ControladorFuncionario implements IControladorFuncionario {
     
     private static $instance;
     
-    private function __construct() {
-        
-    }
-    
-   
-    public static function getInstance()
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = new self();
+    public function getInstance(){
+        if (!isset($this->instance)){
+            $this->instance=new $this->ControladorFuncionario();
         }
 
         return self::$instance;
@@ -33,16 +31,25 @@ class ControladorFuncionario implements IControladorFuncionario {
     
     public function ingresarFuncionario($param){
         
-    }
-    public function ingresarMarca($param){
         
     }
-    public function ingresarSistema($param){
+    public function ingresarMarca($registro, $hora,$tipo){
+        //tipo se lo pasamos 0 entrada 1 salida de la capa de presentacion
+        //si no anda hay que mandarle el enumES
+        $func =null;//lo obtengo de la base
+        $func->ingresarMarca($hora,tipo);
         
+    }
+    public function ingresarSistema(){
+        
+    }
+
+    public function verSueldo($registro)
+    {
+        # code...
     }
 
 
 
-    //put your code here
 }
 ?>

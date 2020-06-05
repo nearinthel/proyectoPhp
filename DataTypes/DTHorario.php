@@ -12,9 +12,14 @@
  * @author Alberto Damelles
  */
 class DTHorarios {
-    //put your code here
-    
-    private $fijo;
+    //despues lo hago enumerado usar strtotime 
+    private $fijo = array(
+                    array("dia"=>"Lunes","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Martes","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Miercoles","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Jueves","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Viernes","entrada"=>"08:00am","salida"=>"04:00pm")
+                );
     private $rotativo;
     
     function __construct() {
