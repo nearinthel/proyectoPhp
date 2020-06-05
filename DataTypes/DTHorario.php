@@ -12,13 +12,13 @@
  * @author Alberto Damelles
  */
 class DTHorarios {
-    //despues lo hago enumerado
-    
-    private $fijo = array(array("Lunes",date(8:0:0),date(16:0:0)),
-                    array("Martes",date(8:0:0),date(16:0:0)),
-                    array("Miercoles",date(8:0:0),date(16:0:0)),
-                    array("Jueves",date(8:0:0),date(16:0:0)),
-                    array("Viernes",date(8:0:0),date(16:0:0))
+    //despues lo hago enumerado usar strtotime 
+    private $fijo = array(
+                    array("dia"=>"Lunes","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Martes","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Miercoles","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Jueves","entrada"=>"08:00am","salida"=>"04:00pm"),
+                    array("dia"=>"Viernes","entrada"=>"08:00am","salida"=>"04:00pm")
                 );
     private $rotativo;
     

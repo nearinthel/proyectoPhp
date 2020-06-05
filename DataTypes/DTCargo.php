@@ -11,11 +11,12 @@
  *
  * @author Alberto Damelles
  */
+include("DTSueldo");
 class DTCargo {
     //put your code here
     
     private $nivel;
-    private $sueldo;
+    private $dtsueldo;
     
     function __construct() {
         
@@ -26,7 +27,7 @@ class DTCargo {
     }
 
     function getSueldo() {
-        return $this->sueldo;
+        return $this->dtsueldo;
     }
 
     function setNivel($nivel) {
@@ -34,7 +35,7 @@ class DTCargo {
     }
 
     function setSueldo($sueldo) {
-        $this->sueldo = $sueldo;
+        $this->sueldo = $dtsueldo;
     }
 
 

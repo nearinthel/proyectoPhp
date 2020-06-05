@@ -15,6 +15,11 @@ class Empleado extends Funcionario{
     //put your code here
     private $supervisor;
     
+    public function setSuper($regS){
+        $f= null;//busco el supervisor en la base
+        $this->supervisor= $f;
+    }
+
     public function getSupervisor(){
         return $this->supervisor;
         

@@ -11,10 +11,24 @@
  *
  * @author Alberto Damelles
  */
+include 'Anuncio.php';
 class Supervisor extends Funcionario{
     private $anuncios;//lista de anuncios a aprobar
+    private $email;
 
-    public function aceptarAnuncio($idAnuncio) {
+    public function Email($mail)
+    {
+        $this->email = $mail;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    public function aceptarAnuncio($idanuncio) {
+
+        //saca el anuncio de la lista del supervisor
         $i = 0;
         while($idAnuncio != $anuncios[$i].getId()){
             $i++;
@@ -22,4 +36,9 @@ class Supervisor extends Funcionario{
         //revisar memoria
         unset($anuncios[$i]);
     }
+
+    public function agregarAnuncio($a){
+        $this->anuncios[$this->anuncios->count()]=$a;
+    }
+
 }

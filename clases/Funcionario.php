@@ -16,6 +16,7 @@
  * 
  */
 include("FuncionarioMarca.php");
+include("Anuncio.php");
 class Funcionario {
     //put your code here
     
@@ -27,6 +28,9 @@ class Funcionario {
     protected $cargo;
     protected $horario;
     protected $fM;
+    protected $pass;
+
+    protected $anuncios;
 
     public function __construct() {
         
@@ -99,9 +103,32 @@ class Funcionario {
     }
 
     function verificarInconsistencia($hora){
-    //inconsistencias:llegar tarde, irte antes, horas extras
-    //     
-        
+    //inconsistencias:llegar tarde, irte antes
+    //por ahora solo fijo te deja irte despues de las 16
+    $h = $hora->format('%h');
+    $m = $hora->format('%i');
+    if(($h<"8") or($h < "16")){
+        return true;
+    }else {
+        return false;
+    }   
     }           
-                
+     
+    public function ingresarAnuncio($nroAnuncio, $just){
+        //aca debe notificar al super
+        $a = Anuncio::ingresarAnuncio($nroAnuncio, $just);
+        $this->anuncios[$this->anuncios->count()] = $a;
+    }
+
+     public function arreglarSueldo($idAnuncio)
+     {
+        $i = 0;
+        while($idAnuncio != $this->anuncios[$i].getId()){
+            $i++;
+        }
+        $this->anuncios[$i]->modificarSueldo();
+
+     }
+
+
 }

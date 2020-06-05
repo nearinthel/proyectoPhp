@@ -13,14 +13,13 @@ include 'Anuncio.php';
  *
  * @author Alberto Damelles
  */
+include('Funcionario.php');
+
+
 class ControladorAnuncio implements IControladorAnuncio {
-    //put your code here
     
     private $instance = null;
     
-    private function __construct() {
-        
-    }
     
     public function getInstance(){
         if (!isset($this->instance)){
@@ -30,10 +29,16 @@ class ControladorAnuncio implements IControladorAnuncio {
         
     }
     
-    public function aceptarAnuncio($param){
-        
+    public function aceptarAnuncio($a,$f){
+        $super = $f->getSuper();
+        $id  = $a->getId();
+        $super->aceptarAnuncio($id);
+        $f->arreglarSueldo($id);
+        $a->borrarInconsistencia();        
     }
-    public function ingresarAnuncio($param){
+    public function ingresarAnuncio($num, $just,$emp){
+        $super = $emp->getSupervisor();
+        $emp->ingresarAnuncio($num, $just);
         
     }
 }
