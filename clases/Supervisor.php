@@ -41,4 +41,8 @@ class Supervisor extends Funcionario{
         $this->anuncios[$this->anuncios->count()]=$a;
     }
 
+   
+    public function update(SplSubject $subject){
+        
+    }
 }

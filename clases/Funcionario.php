@@ -19,7 +19,7 @@ include("FuncionarioMarca.php");
 include("Anuncio.php");
 class Funcionario {
     //put your code here
-    
+   
     protected $registro;
     protected $ci;
     protected $nombre;

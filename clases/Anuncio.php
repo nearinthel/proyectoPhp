@@ -12,13 +12,16 @@
  * @author Alberto Damelles
  */
 include("FuncionarioMarca.php");
-class Anuncio{
+class Anuncio implements SplSubject{
     
     private $fm;//funcionario marca
     private $descripcion;// de que se trata el anuncio
     private $nroAnuncio;//numero que se usa en la empresa para ese anuncio ejemplo exrta 4
     private $justificacion;//porque lo usaron
-    private $id = 0;//probar
+    private $id = 0;//probar 
+    private $estado;
+    private $storage;
+    
     
     public function __construct($nro, $desc) {
     //la descripcion es para que usarlo el nro es el que se usa id el identificador
@@ -37,11 +40,14 @@ class Anuncio{
         $a = Anuncio($nro,$desc);
         return $a;
         
+        $this->storage = new SplObjectStorage;
+        
     }
 
 
     public function getDescripcion() {
         return $this->descripcion;
+        
     }
 
     public function getNroAnuncio() {
@@ -53,6 +59,8 @@ class Anuncio{
     }
     public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
+        $this->estado=$this->getDescripcion();
+        $this->notify();
     }
 
     public function setNroAnuncio($nroAnuncio) {
@@ -69,6 +77,21 @@ class Anuncio{
     
     public function borrarInconsistencia() {
         $this->fm->removerIncosistencia();        
+    }
+    
+    public function attach(SplObserver $observer)
+    {
+        $this->storage->attach($observer);
+    }
+    public function detach(SplObserver $observer)
+    {
+        $this->storage->detach($observer);
+    }
+    public function notify()
+    {
+        foreach ($this->storage as $observer) {
+            $observer->update($this);
+        }
     }
 
     public function modificarSueldo(){

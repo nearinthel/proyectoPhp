@@ -13,5 +13,32 @@
 interface iControladorConexion {
     //put your code here
     public static function getInstance();
+    
+    public function updateFuncionario($registro, $nombre, $apellido, $fnac, 
+            $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
+        
+    public function deleteFuncionario($registro);
+    
+    public function insertFuncionario($registro, $nombre, $apellido, $fnac, 
+            $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
+    
+    public function agregarSubordinado($primerRegistro, $segundoRegistro);
+    
+    public function insertAnuncio($nroAnuncio, $descripcion);
 
+    public function updateAnuncio($nroAnuncio, $descripcion);
+
+    public function deleteAnuncio($nroAnuncio);    
+    
+    public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia);
+    
+    public function updateMarca($hora, $registro, $tipoMarca, $inconsistencia);
+
+    public function justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia);
+
+    public function noJustificar($nroAnuncio, $hora, $registro, $tipoMarca);
+
+    public function aceptarAnuncio($regSup, $nroAnuncio);
+
+    public function noAceptarAnuncio($regSup, $nroAnuncio);    
 }
