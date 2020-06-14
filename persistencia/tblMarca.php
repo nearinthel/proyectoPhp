@@ -51,8 +51,14 @@ class tblMarca {
         
         $hora=$hora->format('H:i:s');
         
-        $sql="delete from marca where where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
+        $sql="delete from marca where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
         
+        return $sql;
+    }
+    
+    public function select($registro, $hora, $tipoMarca){
+        $hora=$hora->format('H:i:s');
+        $sql="select * from marca where registro='$registro' and hora='$hora' and tipomarca='$tipoMarca'";
         return $sql;
     }
 

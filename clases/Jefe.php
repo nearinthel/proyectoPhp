@@ -13,6 +13,8 @@
  */
 include('Anuncio.php');
 include('Funcionario.php');
+include "../persistencia/iControladorConexion.php";
+
 class Jefe extends Funcionario{
     private $func;
     private $anuncios;
@@ -21,21 +23,30 @@ class Jefe extends Funcionario{
     public function crearAnuncio($nroAnuncio,$descripcion) {
         $a = new Anuncio($nroAnuncio, $descripcion);
         //guardar a en la base de datos
+        $controlador= ControladorConexion::getInstance();
+        $controlador->insertAnuncio($nroAnuncio, $descripcion);
         
     }
     
     public function verFuncionario($registro) {
-        $f=null;
+        
+        $controlador= iControladorConexion::getInstance();
+        $f=$controlador->getFuncinario($registro);
+        
+        
         return $f;//la consulta
     }
     public function modificarFuncionario($registro,$modificacion)
     {
         # code...
+        
     }
 
     public function borrarFuncionario($registro)
     {
         # code...
+        $controlador= ControladorConexion::getInstance();
+        $controlador->deleteFuncionario($registro);
     }
 
 }

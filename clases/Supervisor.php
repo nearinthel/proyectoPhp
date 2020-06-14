@@ -12,7 +12,7 @@
  * @author Alberto Damelles
  */
 include 'Anuncio.php';
-class Supervisor extends Funcionario{
+class Supervisor extends Funcionario implements SplObserver{
     private $anuncios;//lista de anuncios a aprobar
     private $email;
 
@@ -26,15 +26,16 @@ class Supervisor extends Funcionario{
         return $this->email;
     }
 
-    public function aceptarAnuncio($idanuncio) {
+    public function aceptarAnuncio($idAnuncio) {
 
         //saca el anuncio de la lista del supervisor
         $i = 0;
         while($idAnuncio != $anuncios[$i].getId()){
+             //revisar memoria
+            unset($anuncios[$i]);
             $i++;
         }
-        //revisar memoria
-        unset($anuncios[$i]);
+       
     }
 
     public function agregarAnuncio($a){

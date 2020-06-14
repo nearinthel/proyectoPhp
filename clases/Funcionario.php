@@ -110,7 +110,12 @@ class Funcionario {
         $fm = new FuncionarioMarca();
         $fm->setFuncionario($this);
         $fm->crearMarca($hora,$tipo);
-        $this->fM =$fm;
+        $this->fM =$fm;    
+        
+        $registro=$this->registro;
+        $inconsistencia=$this->verificarInconsistencia($hora);
+        $controlador= ControladorConexion::getInstance();
+        $controlador->insertMarca($hora, $registro, $tipo, $inconsistencia);
 
     }
 
@@ -130,15 +135,20 @@ class Funcionario {
         //aca debe notificar al super
         $a = Anuncio::ingresarAnuncio($nroAnuncio, $just);
         $this->anuncios[$this->anuncios->count()] = $a;
+        
+        $controlador= ControladorConexion::getInstance();
+        $controlador->insertAnuncio($nroAnuncio, $just);
     }
 
      public function arreglarSueldo($idAnuncio)
      {
         $i = 0;
         while($idAnuncio != $this->anuncios[$i].getId()){
+            $this->anuncios[$i]->modificarSueldo();
+            
             $i++;
         }
-        $this->anuncios[$i]->modificarSueldo();
+        
 
      }
 

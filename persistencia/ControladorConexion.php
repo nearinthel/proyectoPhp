@@ -149,6 +149,13 @@ class ControladorConexion implements iControladorConexion {
         
     }
     
+    public function deleteMarca($hora, $registro, $tipo){
+        $tabla= tblAnuncio::getInstance();
+        $consulta=$tabla->delete($hora, $registro, $tipo);
+        $conexion=$this->getConexion();
+        $conexion->query($consulta);
+    }
+    
     public function justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia){
         $tabla= tblFuncionario::getInstance();
         $consulta=$tabla->justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia);
@@ -179,6 +186,40 @@ class ControladorConexion implements iControladorConexion {
         $conexion->query($consulta);
     }
     
+    public function obtenerIncosistencia($registro, $hora, $tipoMarca){
+        $tabla= tblMarca::getInstance();
+        $consulta=$tabla->select($registro,$hora,$tipoMarca); 
+
+
+        $conexion=$this->getConexion();
+        
+        return $conexion->query($consulta);
+
+        
+    }
+    
+//    public function crearInconsistencia(){
+//        
+//        $marca= tblMarca::getInstance();
+//        
+//        $consultaMarca=$marca->select($registro, $hora, $tipoMarca);
+//        
+//        $conexion= $this->getConexion();
+//        $resultadoConsultaMarca=$conexion->query($consultaMarca);
+//        
+//        foreach ($resultadoMarca as $row){
+//            
+//        }
+//        
+//    }
+    
+    public function getFuncionario($registro){
+        $tabla= tblFuncionario::getInstance();
+        $conulta=$tabla->select($registro);
+        $conexion=$this->getInstance();
+        
+        return $conexion->query($consulta);
+    }
    
 }
 

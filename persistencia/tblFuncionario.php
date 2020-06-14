@@ -97,6 +97,10 @@ class tblFuncionario {
         return $sql;
     }
     
+    public function select($registro){
+        $sql="select * from funcionario where registro='$registro'";
+        return $sql;
+    }
     
 
 }

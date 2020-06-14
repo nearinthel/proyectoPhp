@@ -14,6 +14,10 @@
 include("Marca.php");
 include("../DataType/DTIncosistencia.php");
 include("Funcionario.php");
+
+include "../persistencia/iControladorConexion.php";
+
+
 class FuncionarioMarca {
     
     //diff para calcular las diff
@@ -34,23 +38,32 @@ class FuncionarioMarca {
 
     public function crearInconsistencia()//para marcar las inconsistencias
     {   //por ahora solo turno fijo no verifica si hay marca
-        if($this->marca->getTipo==0){
+        $controlador= iControladorConexion::getInstance();
+        
+        if($this->marca->getTipo()==0){
             if($this->marca->getHora()->format('%h')>8){
                 $dtm = new DTMarca($this->marca->getHora(),enumES::Entrada);
                 $inc = new DTIncosistencia($this->marca->getHora(),$dtm);//se repite la info
                 $this->inconsistencia = $inc;
+                
+                $controlador->insertMarca($this->getMarca()->getHora(), $this->func->getRegistro(), $this->getMarca()->getTipo(), $inc);
             };
         }else {//caso de fuera de hora
             if($this->marca->getHora()->format('%h')>16){
                 $dtm = new DTMarca($this->marca->getHora(),enumES::Salida);
                 $inc = new DTIncosistencia($this->marca->getHora(),$dtm);//se repite la info
                 $this->inconsistencia = $inc;
+                $controlador->insertMarca($this->getMarca()->getHora(), $this->func->getRegistro(), $this->getMarca()->getTipo(), $inc);
+                
+                
             };
         }    
     }
     
-    public function removerIncosistencia() {
+    public function removerInconsistencia() {
         unset($this->inconsistencia);
+        $controlador= ControladorFuncionario::getInstance();
+        $controlador->removerIncosistencia($this->marca->getHora(), $this->func->getRegistro(), $this->marca->getTipo());
     }
 
     public function setFuncionario($f){
@@ -65,8 +78,9 @@ class FuncionarioMarca {
     }
     public function crearMarca($hora,$t){
         //crea la marca y la asiga al funcionario
-        $m = new Marcar($hora,$t);
+        $m = new Marca($hora,$t);
         $this->marca = $m;
+        
     }   
 
 }
