@@ -30,7 +30,7 @@ class Funcionario {
     protected $horario;
     protected $fM;
     protected $pass;
-
+    protected $img;
     protected $anuncios;
 
     public function __construct() {
@@ -148,7 +148,7 @@ class Funcionario {
             
             $i++;
         }
-        
+        $this->anuncios[$i]->modificarSueldo();
 
      }
 

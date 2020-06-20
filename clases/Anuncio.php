@@ -42,7 +42,7 @@ class Anuncio implements SplSubject{
         $a = Anuncio($nro,$desc);
         return $a;      
         
-        
+        $this->storage = new SplObjectStorage;
     }
 
 
