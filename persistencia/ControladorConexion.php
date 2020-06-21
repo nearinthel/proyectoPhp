@@ -150,7 +150,7 @@ class ControladorConexion implements iControladorConexion {
     }
     
     public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia){
-        $tabla= tblAnuncio::getInstance();
+        $tabla= tblMarca::getInstance();
         $consulta=$tabla->insert($hora, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
@@ -158,7 +158,7 @@ class ControladorConexion implements iControladorConexion {
     }
     
     public function updateMarca($hora, $registro, $tipoMarca, $inconsistencia){
-        $tabla= tblAnuncio::getInstance();
+        $tabla= tblMarca::getInstance();
         $consulta=$tabla->update($hora, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
@@ -166,7 +166,7 @@ class ControladorConexion implements iControladorConexion {
     }
     
     public function deleteMarca($hora, $registro, $tipo){
-        $tabla= tblAnuncio::getInstance();
+        $tabla= tblMarca::getInstance();
         $consulta=$tabla->delete($hora, $registro, $tipo);
         $conexion=$this->getConexion();
         $conexion->query($consulta);

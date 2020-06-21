@@ -31,7 +31,7 @@ class tblMarca {
      public function insert($hora, $registro, $tipo, $inconsistencia){
          
         $hora=$hora->format('H:i:s');
-             
+          
         $sql ="insert into marca (hora, registro, tipoMarca, inconsistencia) values ("
                 . "'$hora', '$registro', '$tipo', '$inconsistencia')";
                

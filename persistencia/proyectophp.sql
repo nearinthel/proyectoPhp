@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-05-2020 a las 23:27:41
+-- Tiempo de generación: 22-06-2020 a las 01:48:38
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -51,6 +51,7 @@ CREATE TABLE `anuncio` (
 
 CREATE TABLE `funcionario` (
   `registro` int(11) NOT NULL,
+  `pass` varchar(25) COLLATE utf8_bin NOT NULL,
   `nombre` varchar(25) COLLATE utf8_bin NOT NULL,
   `apellido` varchar(25) COLLATE utf8_bin NOT NULL,
   `fnac` date NOT NULL,
@@ -63,6 +64,16 @@ CREATE TABLE `funcionario` (
   `esSupervisor` char(1) COLLATE utf8_bin NOT NULL,
   `esJefe` char(1) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Volcado de datos para la tabla `funcionario`
+--
+
+INSERT INTO `funcionario` (`registro`, `pass`, `nombre`, `apellido`, `fnac`, `fing`, `cargo`, `sueldo`, `entrada`, `salida`, `esSubordinado`, `esSupervisor`, `esJefe`) VALUES
+(12102282, '1234', 'Susana', 'Merello', '1950-02-15', '1985-03-07', 'encargado', 20000, '02:30:00', '02:30:00', '0', '1', '0'),
+(12345678, '1234', 'Mariana', 'Damelles', '1977-02-15', '1985-03-07', 'vendedor', 20000, '02:30:00', '02:30:00', '1', '0', '0'),
+(44151643, '1234', 'Lucia', 'Figueredo', '1987-02-14', '1985-03-07', 'cajero', 20000, '02:30:00', '02:30:00', '1', '0', '0'),
+(44853435, '1234', 'Hugo', 'Damelles', '1985-03-07', '1985-03-07', 'gerente', 20000, '02:30:00', '02:30:00', '0', '0', '1');
 
 -- --------------------------------------------------------
 
@@ -103,6 +114,17 @@ CREATE TABLE `tiene` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
+-- Volcado de datos para la tabla `tiene`
+--
+
+INSERT INTO `tiene` (`regSub`, `regSup`) VALUES
+(12102282, 44853435),
+(12345678, 12102282),
+(12345678, 44853435),
+(44151643, 12102282),
+(44151643, 44853435);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -111,7 +133,7 @@ CREATE TABLE `tiene` (
 --
 ALTER TABLE `acepta`
   ADD PRIMARY KEY (`regSup`,`nroAnuncio`),
-  ADD KEY `nroAnuncio` (`nroAnuncio`);
+  ADD KEY `acepta_ibfk_2` (`nroAnuncio`);
 
 --
 -- Indices de la tabla `anuncio`
@@ -155,7 +177,7 @@ ALTER TABLE `tiene`
 --
 ALTER TABLE `acepta`
   ADD CONSTRAINT `acepta_ibfk_1` FOREIGN KEY (`regSup`) REFERENCES `funcionario` (`registro`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `acepta_ibfk_2` FOREIGN KEY (`nroAnuncio`) REFERENCES `justifica` (`nroAnuncio`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `acepta_ibfk_2` FOREIGN KEY (`nroAnuncio`) REFERENCES `anuncio` (`nroAnuncio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `justifica`
