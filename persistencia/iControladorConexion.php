@@ -14,12 +14,12 @@ interface iControladorConexion {
     //put your code here
     public static function getInstance();
     
-    public function updateFuncionario($registro, $nombre, $apellido, $fnac, 
+    public function updateFuncionario($registro,$pass, $nombre, $apellido, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
         
     public function deleteFuncionario($registro);
     
-    public function insertFuncionario($registro, $nombre, $apellido, $fnac, 
+    public function insertFuncionario($registro,$pass, $nombre, $apellido, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
     
     public function agregarSubordinado($primerRegistro, $segundoRegistro);

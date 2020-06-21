@@ -2,7 +2,7 @@
 
 include 'Funcionario.php';
 
-include "../persistencia/iControladorConexion.php";
+include "../persistencia/ControladorConexion.php";
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -39,7 +39,7 @@ class ControladorFuncionario implements IControladorFuncionario {
         //tipo se lo pasamos 0 entrada 1 salida de la capa de presentacion
         //si no anda hay que mandarle el enumES
         
-        $controlador = iControladorConexion::getInstance();
+        $controlador = ControladorConexion::getInstance();
         //$func =null;//lo obtengo de la base
         $func = new Funcionario();
         
@@ -72,7 +72,7 @@ class ControladorFuncionario implements IControladorFuncionario {
     
     public function obtenerInconsistencia($registro, $hora, $tipoMarca){
         
-        $controlador= iControladorConexion::getInstance();
+        $controlador= ControladorConexion::getInstance();
         $result = $controlador->obtenerInconsistencia($registro, $hora, $tipoMarca);
         
         foreach ($result as $row ) {
@@ -90,7 +90,7 @@ class ControladorFuncionario implements IControladorFuncionario {
         //$fm= new FuncionarioMarca();
         
         
-        $controlador= iControladorConexion::getInstance();
+        $controlador= ControladorConexion::getInstance();
         
         //$controlador->noJustificar($nroAnuncio, $hora, $registro, $tipoMarca);
         $controlador->noJustificar($hora, $registro, $tipoMarca);

@@ -10,6 +10,7 @@ include 'ControladorConexion.php';
 
 try{
 $registro=44853435;
+$pass="1234";
 $nombre="Hugo"; 
 $apellido="Damelles";
 $fnac=new DateTime("1985-03-07 02:30:00 PM");
@@ -26,7 +27,7 @@ $esSupervisor="c";
 $esJefe="c";
 
 $instancia=ControladorConexion::getInstance();
-$instancia->insertFuncionario($registro, $nombre, $apellido, $fnac, 
+$instancia->insertFuncionario($registro, $pass, $nombre, $apellido, $fnac, 
             $fing,$cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
 $instancia->agregarSubordinado($registro, $registro);
 }

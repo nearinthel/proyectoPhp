@@ -28,7 +28,7 @@ class tblFuncionario {
         return self::$instance;
     }
     
-    public function insert($registro, $nombre, $apellido, $fnac, 
+    public function insert($registro, $pass, $nombre, $apellido, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe){
                 
         $fnac= $fnac->format('Y-m-d H:i:s');
@@ -36,9 +36,9 @@ class tblFuncionario {
         $entrada=$entrada->format('H:i:s');
         $salida=$salida->format('H:i:s');
             
-        $sql ="insert into funcionario (registro, nombre, apellido, fnac,fing, cargo, sueldo, "
+        $sql ="insert into funcionario (registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
                 . "entrada, salida, esSubordinado, esSupervisor, esJefe) values ("
-                . "'$registro', '$nombre', '$apellido', '$fnac','$fing', '$cargo'"
+                . "'$registro','$pass', '$nombre', '$apellido', '$fnac','$fing', '$cargo'"
                 . ",$sueldo,'$entrada', '$salida', '$esSubordinado', '$esSupervisor', '$esJefe')";
               
         return $sql;
@@ -49,7 +49,7 @@ class tblFuncionario {
         return $sql;
     }
     
-    public function update($registro, $nombre, $apellido, $fnac, 
+    public function update($registro, $pass, $nombre, $apellido, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe){
         
         $fnac= $fnac->format('Y-m-d H:i:s');
@@ -57,7 +57,7 @@ class tblFuncionario {
         $entrada=$entrada->format('H:i:s');
         $salida=$salida->format('H:i:s');
         
-        $sql="update funcionario set registro='$registro', nombre='$nombre', apellido='$apellido', fnac='$fnac' , fing='$fing' ,"
+        $sql="update funcionario set registro='$registro',pass='$pass', nombre='$nombre', apellido='$apellido', fnac='$fnac' , fing='$fing' ,"
                 . "cargo='$cargo', sueldo='$sueldo' , entrada='$entrada' , salida='$salida' , esSubordinado='$esSubordinado', "
                 . "esSupervisor='$esSupervisor', esJefe='$esJefe' where registro= '$registro' ";
         return $sql;
@@ -99,6 +99,11 @@ class tblFuncionario {
     
     public function select($registro){
         $sql="select * from funcionario where registro='$registro'";
+        return $sql;
+    }
+    
+    public function login($registro, $pass){
+        $sql="select * from funcionario where registro='$resgitro' and pass='$pass'";
         return $sql;
     }
     

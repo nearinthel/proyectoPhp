@@ -57,13 +57,13 @@ class ControladorConexion implements iControladorConexion {
     }*/
     
     
-    public function updateFuncionario($registro, $nombre, $apellido, $fnac, 
+    public function updateFuncionario($registro,$pass,  $nombre, $apellido, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe){
 
         
         $tabla= tblFuncionario::getInstance();
          
-        $consulta=$tabla->update($registro, $nombre, $apellido, $fnac, $fing, $cargo, $sueldo,
+        $consulta=$tabla->update($registro,$pass, $nombre, $apellido, $fnac, $fing, $cargo, $sueldo,
                 $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
@@ -78,7 +78,7 @@ class ControladorConexion implements iControladorConexion {
         $conexion->query($consulta);
     }
     
-    public function insertFuncionario($registro, $nombre, $apellido, $fnac, 
+    public function insertFuncionario($registro, $pass, $nombre, $apellido, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe) {
         /*$fnac= $fnac->format('Y-m-d H:i:s');
         $fing=$fing->format('Y-m-d H:i:s');
@@ -93,7 +93,7 @@ class ControladorConexion implements iControladorConexion {
        /* $consulta=$tabla->insert($registro, $nombre, $apellido, $fnac->format('Y-m-d H:i:s'), 
             $fing->format('Y-m-d H:i:s'), $cargo, $sueldo, $entrada->format('H:i:s'), $salida->format('H:i:s'), $esSubordinado, $esSupervisor, $esJefe);*/
         
-        $consulta=$tabla->insert($registro, $nombre, $apellido, $fnac, $fing, $cargo, $sueldo,
+        $consulta=$tabla->insert($registro, $pass, $nombre, $apellido, $fnac, $fing, $cargo, $sueldo,
                 $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
@@ -114,6 +114,22 @@ class ControladorConexion implements iControladorConexion {
         $consulta=$tabla->insert($nroAnuncio,$descripcion);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
+        
+    }
+    
+    public function login($registro, $pass){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->login($registro, $pass);
+        $conexion=$this->getConexion();
+        return $conexion->select($consulta);
+    }
+    
+    public function selectFuncionario($registro)
+    {
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->select($registro);
+        $conexion=$this->getConexion();
+        return $conexion->select($consulta);
         
     }
     
@@ -193,7 +209,7 @@ class ControladorConexion implements iControladorConexion {
 
         $conexion=$this->getConexion();
         
-        return $conexion->query($consulta);
+        return $conexion->select($consulta);
 
         
     }

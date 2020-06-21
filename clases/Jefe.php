@@ -13,7 +13,7 @@
  */
 include('Anuncio.php');
 include('Funcionario.php');
-include "../persistencia/iControladorConexion.php";
+include "../persistencia/ControladorConexion.php";
 
 class Jefe extends Funcionario{
     private $func;
@@ -30,7 +30,7 @@ class Jefe extends Funcionario{
     
     public function verFuncionario($registro) {
         
-        $controlador= iControladorConexion::getInstance();
+        $controlador= ControladorConexion::getInstance();
         $f=$controlador->getFuncinario($registro);
         
         

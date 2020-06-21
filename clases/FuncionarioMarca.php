@@ -15,7 +15,7 @@ include("Marca.php");
 include("../DataType/DTIncosistencia.php");
 include("Funcionario.php");
 
-include "../persistencia/iControladorConexion.php";
+include "../persistencia/ControladorConexion.php";
 
 
 class FuncionarioMarca {
@@ -38,7 +38,7 @@ class FuncionarioMarca {
 
     public function crearInconsistencia()//para marcar las inconsistencias
     {   //por ahora solo turno fijo no verifica si hay marca
-        $controlador= iControladorConexion::getInstance();
+        $controlador= ControladorConexion::getInstance();
         
         if($this->marca->getTipo()==0){
             if($this->marca->getHora()->format('%h')>8){
