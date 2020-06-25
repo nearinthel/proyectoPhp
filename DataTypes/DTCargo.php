@@ -11,15 +11,16 @@
  *
  * @author Alberto Damelles
  */
-include("DTSueldo");
+include_once "DTSueldo.php";
 class DTCargo {
     //put your code here
     
     private $nivel;
     private $dtsueldo;
     
-    function __construct() {
-        
+    function __construct($n,$dtS) {
+        $this->nivel = $n;
+        $this->dtsueldo = $dtS;
     }
     
     function getNivel() {

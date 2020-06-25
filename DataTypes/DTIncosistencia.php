@@ -11,7 +11,7 @@
  *
  * @author Alberto Damelles
  */
-include("DTMarca.php");
+include_once "DTMarca.php";
 class DTIncosistencia {
     private $hora;
     private $dtM;

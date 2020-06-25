@@ -11,7 +11,7 @@
  *
  * @author Alberto Damelles
  */
-include("FuncionarioMarca.php");
+include_once "FuncionarioMarca.php";
 class Anuncio implements SplSubject{
     
     private $fm;//funcionario marca

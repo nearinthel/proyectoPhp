@@ -11,7 +11,7 @@
  *
  * @author Alberto Damelles
  */
-include 'Anuncio.php';
+include_once 'Anuncio.php';
 class Supervisor extends Funcionario implements SplObserver{
     private $anuncios;//lista de anuncios a aprobar
     private $email;

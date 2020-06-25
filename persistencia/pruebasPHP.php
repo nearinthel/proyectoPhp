@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-include 'ControladorConexion.php';
+include_once 'ControladorConexion.php';
 
 try{
 $registro=44853435;

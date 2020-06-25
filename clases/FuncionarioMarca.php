@@ -11,11 +11,11 @@
  *
  * @author Alberto Damelles
  */
-include("Marca.php");
-include("../DataType/DTIncosistencia.php");
-include("Funcionario.php");
+include_once "Marca.php";
+include_once "../DataTypes/DTIncosistencia.php";
+include_once "Funcionario.php";
 
-include "../persistencia/iControladorConexion.php";
+include_once "../persistencia/iControladorConexion.php";
 
 
 class FuncionarioMarca {
@@ -79,8 +79,7 @@ class FuncionarioMarca {
     public function crearMarca($hora,$t){
         //crea la marca y la asiga al funcionario
         $m = new Marca($hora,$t);
-        $this->marca = $m;
-        
+        $this->marca = $m;    
     }   
 
 }
