@@ -16,7 +16,9 @@ class Empleado extends Funcionario{
     private $supervisor;
     
     public function setSuper($regS){
-        $f= null;//busco el supervisor en la base
+        $controlador = ControladorConexion::getInstance();
+        
+        $f= $controlador->getFuncionario($regS);//busco el supervisor en la base
         $this->supervisor= $f;
     }
 
@@ -24,4 +26,6 @@ class Empleado extends Funcionario{
         return $this->supervisor;
         
     }
+    
+    
 }
