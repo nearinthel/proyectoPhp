@@ -11,7 +11,11 @@
  *
  * @author Alberto Damelles
  */
+<<<<<<< HEAD
 include_once ("enumES.php");
+=======
+include_once "enumES.php";
+>>>>>>> 2a51bae12d96d7b4ea4b339f29136f566b1fc2ca
 class DTMarca {
     private $hora;//la hora se debe crear con datetime
     private $tipo;

@@ -6,7 +6,7 @@ class DTSueldo{
     private $sueldo;
 
     public function __construct($t) {
-        $this->total = $sueldo;
+        $this->total = $t;
     } 
 
     public function getSueldo()
@@ -15,7 +15,7 @@ class DTSueldo{
     }
 
     public function getHSueldo(){
-        return $hora;
+        return $this->hora;
     }
 
     public function setSueldo($val){

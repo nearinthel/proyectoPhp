@@ -15,8 +15,9 @@
  * falta funcion para ingresar licencia
  * 
  */
-include("FuncionarioMarca.php");
-include("Anuncio.php");
+include_once "FuncionarioMarca.php";
+include_once "Anuncio.php";
+include_once "../persistencia/ControladorConexion.php";
 class Funcionario {
     //put your code here
    
@@ -38,6 +39,9 @@ class Funcionario {
         
     }
 
+    public function getPass(){
+        return $this->pass;
+    }
     
     public function getRegistro() {
         return $this->registro;
@@ -111,7 +115,11 @@ class Funcionario {
         $this->mail = $mail;
     }
 
-    
+
+    function getListaMarcas(){
+        return $this->fM;
+    }
+
 
 
     function ingresarMarca($hora,$tipo){

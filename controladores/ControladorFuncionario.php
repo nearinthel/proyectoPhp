@@ -15,8 +15,8 @@ include "../persistencia/ControladorConexion.php";
  *
  * @author Alberto Damelles
  */
-include 'FuncionarioMarca.php';
-include 'enumES.php';
+include_once '../clases/FuncionarioMarca.php';
+include_once '../DataTypes/enumES.php';
 
 
 class ControladorFuncionario implements IControladorFuncionario {

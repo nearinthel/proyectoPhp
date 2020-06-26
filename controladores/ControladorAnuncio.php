@@ -1,6 +1,6 @@
 <?php
 
-include 'Anuncio.php';
+include_once 'Anuncio.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,7 +13,7 @@ include 'Anuncio.php';
  *
  * @author Alberto Damelles
  */
-include('Funcionario.php');
+include_once 'Funcionario.php';
 
 
 class ControladorAnuncio implements IControladorAnuncio {

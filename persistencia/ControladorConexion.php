@@ -12,11 +12,11 @@
  *
  * @author Alberto Damelles
  */
-include 'Conexion.php';
-include 'iControladorConexion.php';
-include 'tblFuncionario.php';
-include 'tblAnuncio.php';
-include 'tblMarca.php';
+include_once 'Conexion.php';
+include_once 'iControladorConexion.php';
+include_once 'tblFuncionario.php';
+include_once 'tblAnuncio.php';
+include_once 'tblMarca.php';
 
         
 
@@ -234,7 +234,6 @@ class ControladorConexion implements iControladorConexion {
         $tabla= tblFuncionario::getInstance();
         $conulta=$tabla->select($registro);
         $conexion=$this->getInstance();
-        
         return $conexion->query($consulta);
     }
    

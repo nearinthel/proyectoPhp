@@ -1,3 +1,16 @@
+<?php
+  include_once '../persistencia/ControladorConexion.php';
+  include_once '../clases/Funcionario.php';
+  if(isset($_COOKIE['reg'])){
+    $isnt = ControladorConexion::getInstance();
+    $func = $isnt->getFuncionario($_COOKIE['reg']);
+    $pass = $func->getPass();
+  }else{
+    $pass='';
+  };
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,15 +31,15 @@
                 <div class="card card-signin my-5">
                   <div class="card-body">
                     <h5 class="card-title text-center">Ingresar al Sistema</h5>
-                    <form class="form-signin">
+                    <form class="form-signin" action="ingresar.php" method="POST">
                       <div class="form-label-group">
-                        <input type="text" id="reg" class="form-control" placeholder="Registro" required autofocus>
+                        <input type="text" id="reg" name="reg" class="form-control" placeholder="Registro" required autofocus>
                       </div>
         
                       <div class="form-label-group">
-                        <input type="password" id="pass" class="form-control" placeholder="Contraseña" required>
+                        <input type="password" id="pass" name="pass"class="form-control" placeholder="Contraseña" value="<?php $pass
+                        ?>" required>
                       </div>
-        
                       <div class="custom-control custom-checkbox mb-3">
                         <input type="checkbox" class="custom-control-input" id="check">
                         <label class="custom-control-label" for="check">Recordar contraseña</label>
