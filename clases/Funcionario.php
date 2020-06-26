@@ -31,6 +31,7 @@ class Funcionario {
     protected $fM;
     protected $pass;
     protected $img;
+    protected $mail;
     protected $anuncios;
 
     public function __construct() {
@@ -102,7 +103,15 @@ class Funcionario {
     function setFing($fing) {
         $this->fing = $fing;
     }
+    function getMail() {
+        return $this->mail;
+    }
 
+    function setMail($mail) {
+        $this->mail = $mail;
+    }
+
+    
 
 
     function ingresarMarca($hora,$tipo){

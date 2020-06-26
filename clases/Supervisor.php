@@ -12,6 +12,10 @@
  * @author Alberto Damelles
  */
 include 'Anuncio.php';
+require 'librerias/PHPMailer/src/PHPMailer.php';
+require 'librerias/PHPMailer/src/Exception.php';
+require 'librerias/PHPMailer/src/SMTP.php';
+
 class Supervisor extends Funcionario implements SplObserver{
     private $anuncios;//lista de anuncios a aprobar
     private $email;
@@ -44,6 +48,42 @@ class Supervisor extends Funcionario implements SplObserver{
 
    
     public function update(SplSubject $subject){
+
+	$mail = new PHPMailer();
+	$mail->isSMTP();
+
+	$mail->Port = 587;
+	$mail->SMTPAuth = true;
+	$mail->SMTPAuth = true;
+	$mail->Host = 'smtp.gmail.com';
+	$mail->SMTPAuth = true;
+	$mail->isHTML(true);
+
+	$mail->SMTPOptions = array(
+   	'ssl' => array(
+    	'verify_peer' => false,
+     	'verify_peer_name' => false,
+     	'allow_self_signed' => true
+    	)
+	);
+        
+        $destinatarioCorreo=$this->mail;
+        $remitenteCorreo="phprecibos@gmail.com";
+        $passCorreo="AdminAdmin";
+        
+        $mailAenviar= $subject->getEstado();
+
+	$mail->Username = $remitenteCorreo;
+	$mail->Password = $passCorreo;
+	$mail->setFrom($remitenteCorreo);
+	$mail->addAddress($destinatarioCorreo);
+	$mail->Subject = 'Notificacion de nuevo Anuncio';
+	$mail->Body = $mailAenviar;
+
+	if (!$mail->send()) {
+	    //echo "ERROR: " . $mail->ErrorInfo."\n";
+	    errorWrite($mail->ErrorInfo);
+	}
         
     }
 }

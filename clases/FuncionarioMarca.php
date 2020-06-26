@@ -11,8 +11,8 @@
  *
  * @author Alberto Damelles
  */
-include("Marca.php");
-include("../DataType/DTIncosistencia.php");
+include_once("Marca.php");
+include_once("../DataTypes/DTInconsistencia.php");
 include("Funcionario.php");
 
 include "../persistencia/ControladorConexion.php";

@@ -16,6 +16,8 @@ $apellido="Damelles";
 $fnac=new DateTime("1985-03-07 02:30:00 PM");
 //$fnac=date("Y-m-d H:i:s");
 echo $fnac->format('Y-m-d H:i:s');
+$mail="phprecibos@gmail.com";
+
 
 $fing=new DateTime("1985-03-07 02:30:00 AM");
 $cargo="gerente";
@@ -29,8 +31,8 @@ $esJefe="1";
 
 
 $instancia=ControladorConexion::getInstance();
-$instancia->insertFuncionario($registro, $pass, $nombre, $apellido, $fnac, 
-            $fing,$cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
+$instancia->insertFuncionario($registro, $pass, $nombre, $apellido,$mail, $fnac, 
+            $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
 //$instancia->agregarSubordinado($registro, $registro);
 
 //marcas
@@ -56,8 +58,8 @@ $nombre="Susana";
 $apellido="Merello";
 $fnac=new DateTime("1950-02-15 02:30:00 PM");
 //$fnac=date("Y-m-d H:i:s");
-echo $fnac->format('Y-m-d H:i:s');
-
+//echo $fnac->format('Y-m-d H:i:s');
+$mail="phprecibos@gmail.com";
 $fing=new DateTime("1985-03-07 02:30:00 AM");
 $cargo="encargado";
 $sueldo=20000;
@@ -71,16 +73,16 @@ $esJefe="0";
 
 
 $instancia=ControladorConexion::getInstance();
-$instancia->insertFuncionario($registro, $pass, $nombre, $apellido, $fnac, 
-            $fing,$cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
+$instancia->insertFuncionario($registro, $pass, $nombre, $apellido,$mail, $fnac, 
+            $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
 //$instancia->agregarSubordinado($registro, $registro);
 
 //marcas
 //marcas
-echo "mostrar mensaje";
+//echo "mostrar mensaje";
 $hora=new DateTime("1985-03-07 02:30:00 PM");
 
-echo $hora->format('H:i:s');      
+//echo $hora->format('H:i:s');      
 $tipo="entrada";
 $inc="1";
 
@@ -100,7 +102,7 @@ $apellido="Figueredo";
 $fnac=new DateTime("1987-02-14 02:30:00 PM");
 //$fnac=date("Y-m-d H:i:s");
 echo $fnac->format('Y-m-d H:i:s');
-
+$mail="phprecibos@gmail.com";
 $fing=new DateTime("1985-03-07 02:30:00 AM");
 $cargo="cajero";
 $sueldo=20000;
@@ -111,8 +113,8 @@ $esSupervisor="0";
 $esJefe="0";
 
 $instancia=ControladorConexion::getInstance();
-$instancia->insertFuncionario($registro, $pass, $nombre, $apellido, $fnac, 
-            $fing,$cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
+$instancia->insertFuncionario($registro, $pass, $nombre, $apellido,$mail, $fnac, 
+            $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
 //$instancia->agregarSubordinado($registro, $registro);
 
 //marcas
@@ -130,7 +132,7 @@ $tipo="salida";
 $inc="0";
 
 $instancia->insertMarca($hora, $registro, $tipo, $inc);
-
+$mail="phprecibos@gmail.com";
 $registro=12345678;
 $pass="1234";
 $nombre="Mariana"; 
@@ -149,8 +151,8 @@ $esSupervisor="0";
 $esJefe="0";
 
 $instancia=ControladorConexion::getInstance();
-$instancia->insertFuncionario($registro, $pass, $nombre, $apellido, $fnac, 
-            $fing,$cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
+$instancia->insertFuncionario($registro, $pass, $nombre, $apellido,$mail, $fnac, 
+            $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
 $instancia->agregarSubordinado(44853435, $registro);
 
 $instancia->agregarSubordinado(44853435, 12102282);
@@ -178,8 +180,12 @@ $instancia->insertMarca($hora, $registro, $tipo, $inc);
 
 
 
-
-
+$resultado= $instancia->selectFuncionario(44853435);
+foreach ($resultado as $value) {
+    echo $value["registro"];
+     echo $value["mail"];
+    
+}
 
 }
  catch (Exception $e){

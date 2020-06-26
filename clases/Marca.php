@@ -1,5 +1,5 @@
 <?php
-include("../DataTypes/numES.php");
+include_once ("../DataTypes/enumES.php");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

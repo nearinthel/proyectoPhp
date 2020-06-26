@@ -5,28 +5,32 @@
         <group>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Marca.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/pruebasPHP.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/enumES.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/Conexion.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/presentacion/ingresar.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/controladores/IControladorFuncionario.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/iControladorConexion.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/FuncionarioMarca.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/controladores/ControladorAnuncio.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTHorario.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTIncosistencia.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProject1/clases/Anuncio.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTMarca.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTInconsistencia.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/ControladorConexion.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/controladores/ControladorFuncionario.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProject1/clases/Funcionario.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/tblMarca.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Empleado.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/tblAnuncio.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/index.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/tblFuncionario.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Supervisor.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProject1/controladores/IControladorAnuncio.php</file>
-            <file>file:/C:/xampp/htdocs/PhpProject1/presentacion/funcionario.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTSueldo.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTCargo.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Jefe.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/controladores/pruebasMail.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/iControladorConexion.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/clases/Anuncio.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTMarca.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/clases/Funcionario.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/controladores/IControladorAnuncio.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/presentacion/funcionario.php</file>
         </group>
     </open-files>
 </project-private>
