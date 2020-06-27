@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -29,7 +28,7 @@ class Funcionario {
     protected $fing;
     protected $cargo;
     protected $horario;
-    protected $fM;
+    protected $fM = array();
     protected $pass;
     protected $img;
     protected $anuncios;
@@ -40,6 +39,9 @@ class Funcionario {
 
     public function getPass(){
         return $this->pass;
+    }
+    public function setPass($pass){
+        $this->pass = $pass;
     }
     
     public function getRegistro() {
@@ -118,8 +120,7 @@ class Funcionario {
         $fm = new FuncionarioMarca();
         $fm->setFuncionario($this);
         $fm->crearMarca($hora,$tipo);
-        $this->fM =$fm;    
-        
+        arraypush($this->fM,fm);
         $registro=$this->registro;
         $inconsistencia=$this->verificarInconsistencia($hora);
         $controlador= ControladorConexion::getInstance();

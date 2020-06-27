@@ -56,13 +56,14 @@ class Conexion {
         
     }
     
-    public function query($sql){
+     public function query($sql){
+        
        if ( $this->conexion->query($sql)===FALSE){
-           throw new Exception("No se pudo ejecutar la query");
+           throw new Exception("No se pudo ejecutar la query");           
        }
-       
+
                     
-       //return $resultado;
+       return $this->conexion->query($sql);
     }
     
     public function select($sql){

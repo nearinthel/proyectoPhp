@@ -1,13 +1,7 @@
 <?php
   include_once '../persistencia/ControladorConexion.php';
   include_once '../clases/Funcionario.php';
-  if(isset($_COOKIE['reg'])){
-    $isnt = ControladorConexion::getInstance();
-    $func = $isnt->getFuncionario($_COOKIE['reg']);
-    $pass = $func->getPass();
-  }else{
-    $pass='';
-  };
+    
 ?>
 
 
@@ -21,7 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro Personal</title>
 </head>
 <body>
     <div class="bg">
@@ -33,16 +27,18 @@
                     <h5 class="card-title text-center">Ingresar al Sistema</h5>
                     <form class="form-signin" action="ingresar.php" method="POST">
                       <div class="form-label-group">
-                        <input type="text" id="reg" name="reg" class="form-control" placeholder="Registro" required autofocus>
+                        <input type="text" id="reg" name="reg" class="form-control" placeholder="Registro" 
+                        value="<?php if(isset($_COOKIE['fun'])){echo $_COOKIE['fun']; } ?>"
+                        required autofocus>
                       </div>
         
                       <div class="form-label-group">
-                        <input type="password" id="pass" name="pass"class="form-control" placeholder="Contraseña" value="<?php $pass
-                        ?>" required>
+                        <input type="password" id="pass" name="pass"class="form-control" placeholder="Contraseña" 
+                        value="<?php if(isset($_COOKIE['reg'])){echo $_COOKIE['reg'];}?>" required>
                       </div>
                       <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="check">
-                        <label class="custom-control-label" for="check">Recordar contraseña</label>
+                        <input type="checkbox" class="custom-control-input" id="check" name="check">
+                        <label class="custom-control-label" for="check">Recordar Datos</label>
                       </div>
                       <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Entrar</button>
                     </form>
@@ -51,6 +47,7 @@
               </div>
             </div>
           </div>
+        </div>
     </div>
 </body>
 </html>

@@ -17,6 +17,8 @@ include_once 'iControladorConexion.php';
 include_once 'tblFuncionario.php';
 include_once 'tblAnuncio.php';
 include_once 'tblMarca.php';
+include_once '../DataTypes/DTCargo.php';
+include_once '../DataTypes/DTSueldo.php';
 
         
 
@@ -228,12 +230,34 @@ class ControladorConexion implements iControladorConexion {
 //        }
 //        
 //    }
+
+    // public function getMarcas($fun,$mes)
+    // //les das el fun y le carga las marcas
+    // {
+    //     $tabla= tblMarca::getInstance();
+    //     $consulta=$tabla->select($fun->getRegistro())
+    // }
     
     public function getFuncionario($registro){
         $tabla= tblFuncionario::getInstance();
-        $conulta=$tabla->select($registro);
-        $conexion=$this->getInstance();
-        return $conexion->query($consulta);
+        $consulta=$tabla->select($registro);
+        $conexion=$this->getConexion();
+        $res = $conexion->query($consulta);
+        $f = new Funcionario();
+        $row = $res->fetch_assoc();
+        $f->setNombre($row["nombre"]);
+        $f->setRegistro($row["registro"]);
+        $f->setApellido($row["apellido"]);
+        $f->setPass($row["pass"]);
+        $f->setFing($row["fing"]);
+        $dts = new DTSueldo($row["sueldo"]);
+        $dtc = new DTCargo($row["cargo"],$dts);
+        $f->setCargo($dtc);
+        
+
+        // registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
+        //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
+        return $f; 
     }
    
 }
