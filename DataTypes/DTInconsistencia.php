@@ -11,7 +11,11 @@
  *
  * @author Alberto Damelles
  */
+<<<<<<< HEAD:DataTypes/DTInconsistencia.php
+include_once("DTMarca.php");
+=======
 include_once "DTMarca.php";
+>>>>>>> 2a51bae12d96d7b4ea4b339f29136f566b1fc2ca:DataTypes/DTIncosistencia.php
 class DTIncosistencia {
     private $hora;
     private $dtM;

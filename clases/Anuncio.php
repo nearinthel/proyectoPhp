@@ -40,9 +40,15 @@ class Anuncio implements SplSubject{
         //cuando se encuentra el nro anuncio en la base de datos se devuelve la descp
         $desc="";
         $a = Anuncio($nro,$desc);
-        return $a;      
+        
+   
         
         $this->storage = new SplObjectStorage;
+        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
+        $this->notify();
+        
+        return $a;   
+        
     }
 
 
@@ -60,8 +66,7 @@ class Anuncio implements SplSubject{
     }
     public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
-        $this->estado=$this->getDescripcion();
-        $this->notify();
+
     }
 
     public function setNroAnuncio($nroAnuncio) {
@@ -150,5 +155,11 @@ class Anuncio implements SplSubject{
     {
         return $this->justificacion;
     }
+    
+    function getEstado() {
+        return $this->estado;
+    }
+
+
 
 }
