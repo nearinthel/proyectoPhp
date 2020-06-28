@@ -232,12 +232,13 @@ class ControladorConexion implements iControladorConexion {
 //        
 //    }
 
-    // public function getMarcas($fun,$mes)
-    // //les das el fun y le carga las marcas
-    // {
-    //     $tabla= tblMarca::getInstance();
-    //     $consulta=$tabla->select($fun->getRegistro())
-    // }
+    public function getMarcas($fun,$mes)
+    //les das el fun y le carga las marcas
+    {
+        $tabla= tblMarca::getInstance();
+        $consulta=$tabla->select($fun->getRegistro());
+
+    }
     
     public function getFuncionario($registro){
         $tabla= tblFuncionario::getInstance();
