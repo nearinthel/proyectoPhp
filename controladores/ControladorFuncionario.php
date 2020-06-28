@@ -17,7 +17,7 @@ include "../persistencia/ControladorConexion.php";
  */
 include_once '../clases/FuncionarioMarca.php';
 include_once '../DataTypes/enumES.php';
-
+include_once '../persistencia/ControladorConexion.php';
 
 class ControladorFuncionario implements IControladorFuncionario {
     
@@ -94,6 +94,28 @@ class ControladorFuncionario implements IControladorFuncionario {
         
         //$controlador->noJustificar($nroAnuncio, $hora, $registro, $tipoMarca);
         $controlador->noJustificar($hora, $registro, $tipoMarca);
+    }
+    
+    public function getFuncionario($registro){
+        $controlador= ControladorConexion::getInstance();
+        $res=$controlador->getFuncionario($registro);
+        
+        $f = new Funcionario();
+        $row = $res->fetch_assoc();
+        $f->setNombre($row["nombre"]);
+        $f->setRegistro($row["registro"]);
+        $f->setApellido($row["apellido"]);
+        $f->setPass($row["pass"]);
+        $f->setFing($row["fing"]);
+        $dts = new DTSueldo($row["sueldo"]);
+        $dtc = new DTCargo($row["cargo"],$dts);
+        $f->setCargo($dtc);
+        
+
+        // registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
+        //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
+        return $f; 
+        
     }
 
 

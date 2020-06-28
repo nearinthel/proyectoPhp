@@ -13,7 +13,7 @@ try{
     $controlador= ControladorConexion::getInstance();
     
     $empleado=new Funcionario();
-    $resultado=$controlador->getFuncionario(44853435);
+    $resultado=$controlador->getFuncionarioMail(44853435);
     echo "busco funcionario";
     
     foreach ($resultado as $row) {

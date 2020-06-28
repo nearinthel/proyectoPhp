@@ -1,7 +1,8 @@
 <?php 
- session_id("elfun"); 
+ //session_id("elfun"); 
  session_start();
     include_once '../clases/Funcionario.php';
+    //include_once '../controladores/ControladorFuncionario.php';
     include_once '../persistencia/ControladorConexion.php';
    
     $passi= $_POST['pass'];

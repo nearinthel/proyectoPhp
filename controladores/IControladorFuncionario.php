@@ -17,4 +17,6 @@ interface IControladorFuncionario {
        public function ingresarFuncionario($param);
        public function ingresarMarca($param);
        public function ingresarSistema($param);
+       public function getFuncionario($registro);
+               
 }

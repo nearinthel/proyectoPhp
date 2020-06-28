@@ -240,29 +240,38 @@ class ControladorConexion implements iControladorConexion {
 
     }
     
-    public function getFuncionario($registro){
+    public function getFuncionarioMail($registro){
         $tabla= tblFuncionario::getInstance();
         $consulta=$tabla->select($registro);
         $conexion=$this->getConexion();
 
         return $conexion->query($consulta);
+        
+    }
+    
+    public function getFuncionario($registro){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->select($registro);
+        $conexion=$this->getConexion();
 
-//        $res = $conexion->query($consulta);
-//        $f = new Funcionario();
-//        $row = $res->fetch_assoc();
-//        $f->setNombre($row["nombre"]);
-//        $f->setRegistro($row["registro"]);
-//        $f->setApellido($row["apellido"]);
-//        $f->setPass($row["pass"]);
-//        $f->setFing($row["fing"]);
-//        $dts = new DTSueldo($row["sueldo"]);
-//        $dtc = new DTCargo($row["cargo"],$dts);
-//        $f->setCargo($dtc);
-//        
-//
-//        // registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
-//        //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
-//        return $f; 
+        //return $conexion->query($consulta);
+
+        $res = $conexion->query($consulta);
+        $f = new Funcionario();
+        $row = $res->fetch_assoc();
+        $f->setNombre($row["nombre"]);
+        $f->setRegistro($row["registro"]);
+        $f->setApellido($row["apellido"]);
+        $f->setPass($row["pass"]);
+        $f->setFing($row["fing"]);
+        $dts = new DTSueldo($row["sueldo"]);
+        $dtc = new DTCargo($row["cargo"],$dts);
+        $f->setCargo($dtc);
+        
+
+        // registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
+        //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
+        return $f; 
 
     }
    
