@@ -28,21 +28,21 @@ class tblMarca {
 
         return self::$instance;
     }
-     public function insert($hora, $registro, $tipo, $inconsistencia){
+     public function insert($hora, $registro, $tipo,$mes, $anio, $inconsistencia){
          
         $hora=$hora->format('H:i:s');
           
-        $sql ="insert into marca (hora, registro, tipoMarca, inconsistencia) values ("
-                . "'$hora', '$registro', '$tipo', '$inconsistencia')";
+        $sql ="insert into marca (hora, registro, tipoMarca,mes, anio, inconsistencia) values ("
+                . "'$hora', '$registro', '$tipo','$mes','$anio' '$inconsistencia')";
                
         return $sql;
     }
   
-    public function update($hora, $registro, $tipo, $inconsistencia){
+    public function update($hora, $registro, $tipo, $mes, $anio, $inconsistencia){
         
         $hora=$hora->format('H:i:s');
         
-        $sql="update marca set hora='$hora', registro='$registro', tipoMarca='$tipo', inconsistencia='$inconsistencia'"
+        $sql="update marca set hora='$hora', registro='$registro', tipoMarca='$tipo',mes='$mes',anio='$anio', inconsistencia='$inconsistencia'"
                 . "where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
         return $sql;
     }

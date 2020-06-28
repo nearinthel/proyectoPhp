@@ -179,27 +179,40 @@ class Funcionario implements SplObserver{
      }
      
       public function update(SplSubject $subject){
-          //echo $subject->getEstado();  
+        $archivo="../config/config.ini";
+        
+        $contenido= parse_ini_file($archivo, false);
+        
+        $hostCorreo=$contenido["hostCorreo"];
+        $port=$contenido["port"];
+        $remitente=$contenido["remitente"];
+        $passCorreo=$contenido["passCorreo"];
+          
+          
 	$mail = new PHPMailer();
 	$mail->isSMTP();
-	$mail->Port = 587;
+	$mail->Port = $port;
 	$mail->SMTPAuth = true;
-	$mail->Host = 'smtp.gmail.com';
+	$mail->Host = $hostCorreo;
 	$mail->isHTML(true);
 	$mail->SMTPOptions = array('ssl' => array('verify_peer' => false,'verify_peer_name' => false,'allow_self_signed' => true ));
         $destinatarioCorreo=$this->mail;
        // $remitenteCorreo="phprecibos@gmail.com";
         //$passCorreo="AdminAdmin";
         $mailAenviar= $subject->getEstado();
-	$mail->Username = "phprecibos@gmail.com";//$remitenteCorreo;
-	$mail->Password = "AdminAdmin";//$passCorreo;
-	$mail->setFrom("phprecibos@gmail.com");//$remitenteCorreo);
+	$mail->Username = $remitente;//"phprecibos@gmail.com";//$remitenteCorreo;
+	$mail->Password = $passCorreo;//"AdminAdmin";//$passCorreo;
+	$mail->setFrom($remitente);//phprecibos@gmail.com");//$remitenteCorreo);
 	$mail->addAddress($destinatarioCorreo);
 	$mail->Subject = 'Notificacion de nuevo Anuncio';
 	$mail->Body = $mailAenviar;
 	if (!$mail->send()) {
 	    //echo "ERROR: " . $mail->ErrorInfo."\n";
-	    errorWrite($mail->ErrorInfo);
+	    //errorWrite($mail->ErrorInfo);
+            echo $hostCorreo;
+            echo $port;
+            echo $destinatarioCorreo;
+            echo "no enviado";
 	}        
               
     }

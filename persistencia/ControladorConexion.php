@@ -152,7 +152,7 @@ class ControladorConexion implements iControladorConexion {
         
     }
     
-    public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia){
+    public function insertMarca($hora, $registro, $tipoMarca,$mes, $anio, $inconsistencia){
         $tabla= tblMarca::getInstance();
         $consulta=$tabla->insert($hora, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
@@ -160,7 +160,7 @@ class ControladorConexion implements iControladorConexion {
         
     }
     
-    public function updateMarca($hora, $registro, $tipoMarca, $inconsistencia){
+    public function updateMarca($hora, $registro, $tipoMarca,$mes, $anio, $inconsistencia){
         $tabla= tblMarca::getInstance();
         $consulta=$tabla->update($hora, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
@@ -244,24 +244,24 @@ class ControladorConexion implements iControladorConexion {
         $consulta=$tabla->select($registro);
         $conexion=$this->getConexion();
 
-        //return $conexion->query($consulta);
+        return $conexion->query($consulta);
 
-        $res = $conexion->query($consulta);
-        $f = new Funcionario();
-        $row = $res->fetch_assoc();
-        $f->setNombre($row["nombre"]);
-        $f->setRegistro($row["registro"]);
-        $f->setApellido($row["apellido"]);
-        $f->setPass($row["pass"]);
-        $f->setFing($row["fing"]);
-        $dts = new DTSueldo($row["sueldo"]);
-        $dtc = new DTCargo($row["cargo"],$dts);
-        $f->setCargo($dtc);
-        
-
-        // registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
-        //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
-        return $f; 
+//        $res = $conexion->query($consulta);
+//        $f = new Funcionario();
+//        $row = $res->fetch_assoc();
+//        $f->setNombre($row["nombre"]);
+//        $f->setRegistro($row["registro"]);
+//        $f->setApellido($row["apellido"]);
+//        $f->setPass($row["pass"]);
+//        $f->setFing($row["fing"]);
+//        $dts = new DTSueldo($row["sueldo"]);
+//        $dtc = new DTCargo($row["cargo"],$dts);
+//        $f->setCargo($dtc);
+//        
+//
+//        // registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
+//        //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
+//        return $f; 
 
     }
    
