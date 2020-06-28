@@ -232,8 +232,8 @@ class ControladorConexion implements iControladorConexion {
     
     public function getFuncionario($registro){
         $tabla= tblFuncionario::getInstance();
-        $conulta=$tabla->select($registro);
-        $conexion=$this->getInstance();
+        $consulta=$tabla->select($registro);
+        $conexion=$this->getConexion();
         return $conexion->query($consulta);
     }
    

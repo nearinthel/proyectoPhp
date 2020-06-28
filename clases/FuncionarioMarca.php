@@ -14,9 +14,9 @@
 
 include_once("Marca.php");
 include_once("../DataTypes/DTInconsistencia.php");
-include("Funcionario.php");
+include_once("Funcionario.php");
 
-include "../persistencia/ControladorConexion.php";
+include_once "../persistencia/ControladorConexion.php";
 
 include_once "../persistencia/iControladorConexion.php";
 

@@ -58,7 +58,7 @@ class Conexion {
     
     public function query($sql){
         
-        echo $sql;
+       echo $sql;
        if ( $this->conexion->query($sql)===FALSE){
            throw new Exception("No se pudo ejecutar la query");           
        }

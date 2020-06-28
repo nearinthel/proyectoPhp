@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2020 a las 01:48:38
+-- Tiempo de generación: 28-06-2020 a las 04:37:01
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.4
 
@@ -54,6 +54,7 @@ CREATE TABLE `funcionario` (
   `pass` varchar(25) COLLATE utf8_bin NOT NULL,
   `nombre` varchar(25) COLLATE utf8_bin NOT NULL,
   `apellido` varchar(25) COLLATE utf8_bin NOT NULL,
+  `mail` varchar(25) COLLATE utf8_bin NOT NULL,
   `fnac` date NOT NULL,
   `fing` date NOT NULL,
   `cargo` varchar(25) COLLATE utf8_bin NOT NULL,
@@ -69,11 +70,11 @@ CREATE TABLE `funcionario` (
 -- Volcado de datos para la tabla `funcionario`
 --
 
-INSERT INTO `funcionario` (`registro`, `pass`, `nombre`, `apellido`, `fnac`, `fing`, `cargo`, `sueldo`, `entrada`, `salida`, `esSubordinado`, `esSupervisor`, `esJefe`) VALUES
-(12102282, '1234', 'Susana', 'Merello', '1950-02-15', '1985-03-07', 'encargado', 20000, '02:30:00', '02:30:00', '0', '1', '0'),
-(12345678, '1234', 'Mariana', 'Damelles', '1977-02-15', '1985-03-07', 'vendedor', 20000, '02:30:00', '02:30:00', '1', '0', '0'),
-(44151643, '1234', 'Lucia', 'Figueredo', '1987-02-14', '1985-03-07', 'cajero', 20000, '02:30:00', '02:30:00', '1', '0', '0'),
-(44853435, '1234', 'Hugo', 'Damelles', '1985-03-07', '1985-03-07', 'gerente', 20000, '02:30:00', '02:30:00', '0', '0', '1');
+INSERT INTO `funcionario` (`registro`, `pass`, `nombre`, `apellido`, `mail`, `fnac`, `fing`, `cargo`, `sueldo`, `entrada`, `salida`, `esSubordinado`, `esSupervisor`, `esJefe`) VALUES
+(12102282, '1234', 'Susana', 'Merello', 'phprecibos@gmail.com', '1950-02-15', '1985-03-07', 'encargado', 20000, '02:30:00', '02:30:00', '0', '1', '0'),
+(12345678, '1234', 'Mariana', 'Damelles', 'phprecibos@gmail.com', '1977-02-15', '1985-03-07', 'vendedor', 20000, '02:30:00', '02:30:00', '1', '0', '0'),
+(44151643, '1234', 'Lucia', 'Figueredo', 'phprecibos@gmail.com', '1987-02-14', '1985-03-07', 'cajero', 20000, '02:30:00', '02:30:00', '1', '0', '0'),
+(44853435, '1234', 'Hugo', 'Damelles', 'phprecibos@gmail.com', '1985-03-07', '1985-03-07', 'gerente', 20000, '02:30:00', '02:30:00', '0', '0', '1');
 
 -- --------------------------------------------------------
 
@@ -99,6 +100,8 @@ CREATE TABLE `marcas` (
   `hora` time NOT NULL,
   `registro` int(11) NOT NULL,
   `tipoMarca` varchar(25) COLLATE utf8_bin NOT NULL,
+  `mes` date NOT NULL,
+  `anio` date NOT NULL,
   `inconsistencia` char(1) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

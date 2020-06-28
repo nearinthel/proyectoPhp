@@ -5,11 +5,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-include '../persistencia/ControladorConexion.php';
-include "../clases/Funcionario.php";
-include "../clases/Anuncio.php";
+include_once '../persistencia/ControladorConexion.php';
+include_once "../clases/Funcionario.php";
+include_once "../clases/Anuncio.php";
 try{
-    ini_set('memory_limit', '-1');
+    //ini_set('memory_limit', '-1');
     $controlador= ControladorConexion::getInstance();
     
     $empleado=new Funcionario();
@@ -20,16 +20,21 @@ try{
      $empleado->setRegistro($row["registro"]);// $registro;
      $empleado->setMail($row["mail"]);   
 
-        echo "funcionario";
+        echo $empleado->getMail();
     }
     
     $anuncio = new Anuncio(1, "puto el que lo lea");
-    echo "puto";
-    $anuncio->attach($empleado);
-    echo "puto 2";
-    $anuncio->ingresarAnuncio(1, "puto el que lo lea");
     
-    echo "puto 3";
+    echo $anuncio->getDescripcion();
+    
+    $anuncio->attach($empleado);
+    
+    
+    $anuncio->setDescripcion("trolololo");
+    
+    //$anuncio->ingresarAnuncio(1, "puto el que lo lea");
+    
+    //echo "puto 3";
     
     
     
