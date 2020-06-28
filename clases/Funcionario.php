@@ -17,7 +17,15 @@
 include_once "FuncionarioMarca.php";
 include_once "Anuncio.php";
 include_once "../persistencia/ControladorConexion.php";
-class Funcionario {
+require '../librerias/PHPMailer/src/PHPMailer.php';
+require '../librerias/PHPMailer/src/Exception.php';
+require '../librerias/PHPMailer/src/SMTP.php';
+
+ use PHPMailer\PHPMailer\PHPMailer;
+ use PHPMailer\PHPMailer\Exception;
+ use PHPMailer\PHPMailer\SMTP;
+
+class Funcionario implements SplObserver{
     //put your code here
    
     protected $registro;
@@ -169,6 +177,32 @@ class Funcionario {
         $this->anuncios[$i]->modificarSueldo();
 
      }
+     
+      public function update(SplSubject $subject){
+          //echo $subject->getEstado();  
+	$mail = new PHPMailer();
+	$mail->isSMTP();
+	$mail->Port = 587;
+	$mail->SMTPAuth = true;
+	$mail->Host = 'smtp.gmail.com';
+	$mail->isHTML(true);
+	$mail->SMTPOptions = array('ssl' => array('verify_peer' => false,'verify_peer_name' => false,'allow_self_signed' => true ));
+        $destinatarioCorreo=$this->mail;
+       // $remitenteCorreo="phprecibos@gmail.com";
+        //$passCorreo="AdminAdmin";
+        $mailAenviar= $subject->getEstado();
+	$mail->Username = "phprecibos@gmail.com";//$remitenteCorreo;
+	$mail->Password = "AdminAdmin";//$passCorreo;
+	$mail->setFrom("phprecibos@gmail.com");//$remitenteCorreo);
+	$mail->addAddress($destinatarioCorreo);
+	$mail->Subject = 'Notificacion de nuevo Anuncio';
+	$mail->Body = $mailAenviar;
+	if (!$mail->send()) {
+	    //echo "ERROR: " . $mail->ErrorInfo."\n";
+	    errorWrite($mail->ErrorInfo);
+	}        
+              
+    }
 
 
 }

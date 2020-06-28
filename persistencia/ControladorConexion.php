@@ -244,6 +244,9 @@ class ControladorConexion implements iControladorConexion {
         $tabla= tblFuncionario::getInstance();
         $consulta=$tabla->select($registro);
         $conexion=$this->getConexion();
+
+        //return $conexion->query($consulta);
+
         $res = $conexion->query($consulta);
         $f = new Funcionario();
         $row = $res->fetch_assoc();
@@ -260,6 +263,7 @@ class ControladorConexion implements iControladorConexion {
         // registro, pass , nombre, apellido, fnac,fing, cargo, sueldo, "
         //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
         return $f; 
+
     }
    
 }

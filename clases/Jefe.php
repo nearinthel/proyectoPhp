@@ -11,9 +11,9 @@
  *
  * @author Alberto Damelles
  */
-include('Anuncio.php');
+include_once('Anuncio.php');
 include('Funcionario.php');
-include "../persistencia/ControladorConexion.php";
+include_once "../persistencia/ControladorConexion.php";
 
 class Jefe extends Funcionario{
     private $func;

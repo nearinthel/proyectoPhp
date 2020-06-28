@@ -27,9 +27,10 @@ class Anuncio implements SplSubject{
     //la descripcion es para que usarlo el nro es el que se usa id el identificador
     //para que lo cree el jefe just va en null
         $this->nroAnuncio = $nro;
-        $this->descripcion = $desc;
+        $this->descripcion=$desc;
         $this->storage = new SplObjectStorage;
-        $this->notify();
+//        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
+//        $this->notify();
     }
     
     public function ingresarAnuncio($nro, $just)
@@ -39,7 +40,7 @@ class Anuncio implements SplSubject{
         $this->justificacion = $just;
         //cuando se encuentra el nro anuncio en la base de datos se devuelve la descp
         $desc="";
-        $a = Anuncio($nro,$desc);
+        $a = new Anuncio($nro,$desc);
         
    
         
@@ -66,6 +67,10 @@ class Anuncio implements SplSubject{
     }
     public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
+        echo $this->descripcion;
+       // $this->storage = new SplObjectStorage;
+        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
+        $this->notify();
 
     }
 
