@@ -1,3 +1,7 @@
+<?php 
+include_once '../clases/Funcionario.php';
+session_id("elfun"); 
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,12 +12,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro Personal</title>
 </head>
 <body>
     
-<?php 
-include_once '../clases/Funcionario.php';
+<?php
+
 include_once '../clases/FuncionarioMarca.php';
 include_once '../clases/Marca.php';
 include '../utilities/numAMeses.php';
@@ -22,24 +26,7 @@ include '../utilities/diasDelMes.php';
 include_once '../DataTypes/DTSueldo.php';
 include_once '../DataTypes/DTCargo.php';
 include_once '../clases/Funcionario.php';
-$dts=new DTSueldo("500pei");
-$dtc=new DTCargo("esJefe",$dts);
-$f=new Funcionario();
-$f->setRegistro("123");
-$f->setNombre("Red Jhon");
-$nom=$f->getNombre();
-$f->setCargo($dtc);
-$fm = new FuncionarioMarca();
-// $m1 = DateTime::createFromFormat('Y/m/d/',"2020/6/25 08:00");
-$m1= new DateTime('2020-06-25T15:03:01');
-$f->ingresarMarca($m1,0);
-// $f->getListaMarcas()->crearMarca($m1,0);
-// echo "<h2>".$nom."</h2>";
-$carg=$f->getCargo()->getNivel();
-
-
-
-    //$f= $_SESSION['func'];
+    $f = $_SESSION["func"];
     $m=new DateTime("now");
     if(!isset($_POST['mes'])){
         $mes=$m->format("m");
@@ -89,12 +76,12 @@ $carg=$f->getCargo()->getNivel();
         <div class="row">
             <div class="col-sm-4">
                 <div class="container">
-                <h2><?php echo $nom; ?></h2>
+                <h2><?php echo $f->getNombre()." ".$f->getApellido(); ?></h2>
                     <div class="card" style="width:400px">
                         <img class="card-img-top" src="../img/power.jpg" alt="Card image" style="width:100%">
                         <div class="card-body">
-                              <h4 class="card-title"><?php echo  "Cargo: ".$carg; ?></h4>
-                              <p class="card-text">Explicacion del cargo</p>
+                              <h4 class="card-title"><?php echo  "Cargo: ".$f->getCargo()->getNivel(); ?></h4>
+                              <p class="card-text">Explicacion del cargo(segun empresa)</p>
                              
                         </div>
                     </div>
@@ -139,18 +126,7 @@ $carg=$f->getCargo()->getNivel();
                         }
                         echo "</td>";
                         echo "</tr>";
-                        // echo "<tr>";
-                        // echo "<td>";
-                       // $tope2=$f->getListaMarcas()->getMarcas()->length;
-                        //for ($i=0; $i < $tope2; $i++) { 
-                           echo "<tr>";
-                            echo "<td>";
-                            echo $f->getMarcas()->getHora();
-                                 echo "<tr>";
-                            echo "<td>";
-                        //}
-                        // echo "</td>";
-                        // echo "</tr>";
+                        
                     }   
 
                     ?>

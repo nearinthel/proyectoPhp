@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -37,7 +36,7 @@ class Funcionario implements SplObserver{
     protected $fing;
     protected $cargo;
     protected $horario;
-    protected $fM;
+    protected $fM = array();
     protected $pass;
     protected $img;
     protected $mail;
@@ -49,6 +48,9 @@ class Funcionario implements SplObserver{
 
     public function getPass(){
         return $this->pass;
+    }
+    public function setPass($pass){
+        $this->pass = $pass;
     }
     
     public function getRegistro() {
@@ -135,8 +137,7 @@ class Funcionario implements SplObserver{
         $fm = new FuncionarioMarca();
         $fm->setFuncionario($this);
         $fm->crearMarca($hora,$tipo);
-        $this->fM =$fm;    
-        
+        arraypush($this->fM,fm);
         $registro=$this->registro;
         $inconsistencia=$this->verificarInconsistencia($hora);
         $controlador= ControladorConexion::getInstance();
