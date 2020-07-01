@@ -107,5 +107,10 @@ class tblFuncionario {
         return $sql;
     }
     
+    public function getSupervisor($regSub){
+        $sql="select * from tiene where regSub='$regSub'";
+        return $sql;
+    }
+    
 
 }

@@ -42,4 +42,6 @@ interface iControladorConexion {
 
     public function noAceptarAnuncio($regSup, $nroAnuncio);    
     public function getFuncionarioMail($registro);
+    
+    public function getSupervisor($registro);
 }
