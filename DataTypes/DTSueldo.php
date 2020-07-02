@@ -6,7 +6,9 @@ class DTSueldo{
     private $sueldo;
 
     public function __construct($t) {
-        $this->total = $t;
+        
+        
+        $this->sueldo = $t;
     } 
 
     public function getSueldo()
@@ -22,6 +24,24 @@ class DTSueldo{
         //inmoralidad hacer esto
         $this->sueldo = $val;
     }
+    
+    function getTotal() {
+        return $this->total;
+    }
+
+    function getHora() {
+        return $this->hora;
+    }
+
+    function setTotal($total) {
+        $this->total = $total;
+    }
+
+    function setHora($hora) {
+        $this->hora = $hora;
+    }
+
+
 
 }
 

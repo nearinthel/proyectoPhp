@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+
+<?php
+
+include_once '../clases/Funcionario.php';
+session_id("elfun"); 
+session_start(); 
+
+$f = $_SESSION["func"];
+?>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../estilos/estilo.css">
@@ -63,7 +72,7 @@
             <h6>mas php</h6>
         </div>
         <div class="col-sm-4 text-center border border-dark bg-light ">
-            <h6>echo $f->getCI();</h6>
+            <h6><?php echo $f->getRegistro() ?></h6>
         </div>
     </div>
     <div class="row">
@@ -73,7 +82,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12 text-center border border-dark bg-light">
-            <h6>echo $f->getApellido()." ".$f->getNombre();</h6>
+            <h6><?php echo $f->getApellido()." ".$f->getNombre();?></h6>
         </div>
         
     </div>
@@ -93,7 +102,10 @@
                         Sueldo Nominal
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        $nominal=$f->getCargo()->getSueldo()->getSueldo();
+                        echo $nominal;
+                        ?>
                     </td>
                 </tr>
                 <tr>
@@ -101,7 +113,9 @@
                         Sueldo Nominal
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        echo $f->getCargo()->getSueldo()->getSueldo();
+//                       ?>
                     </td>
                 </tr>
                 <tr>
@@ -109,7 +123,9 @@
                         Horas extras simple
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        $f->getCargo()->getSueldo();
+                        ?>
                     </td>
                 </tr>
                 <tr>
@@ -117,7 +133,9 @@
                         Horas extras doble
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        $f->getCargo()->getSueldo();
+                        ?>
                     </td>
                 </tr>
             </table>
@@ -129,7 +147,10 @@
                     Montepio
                 </td>
                 <td class="text-rigth">
-                    Sueldo*0.15
+                    <?php
+                    $montepio=$f->getCargo()->getSueldo()->getSueldo()*0.15;
+                    echo $montepio;
+                    ?>
                 </td>
             </tr>
             <tr>
@@ -137,8 +158,21 @@
                     SNIS
                 </td>
                 <td class="text-rigth">
-                    3% si tu sueldo nominal no supera las 2,5 BPC* ($9.620)
-                    <!-- 4,5% si supera 2,5 BPC* ($9.620 en adelante) y no tienes hijos a cargo.
+                    
+                    <?php 
+                    $snis=0;
+                    if ($f->getCargo()->getSueldo()->getSueldo()<=9620){
+                        $snis=$f->getCargo()->getSueldo()->getSueldo()*0.03;
+                        
+                    }
+                    else  {
+                        $snis= $f->getCargo()->getSueldo()->getSueldo()*0.045;
+                    }
+                    echo $snis;
+
+                    ?>
+                    <!--3% si tu sueldo nominal no supera las 2,5 BPC* ($9.620)
+                     4,5% si supera 2,5 BPC* ($9.620 en adelante) y no tienes hijos a cargo.
                         6 % para más de 2,5 BPC* ($9.620) con hijos menores o con discapacidad a cargo.
                     5% para más de 2,5 BPC* ($9.620) sin hijos, pero sí cónyuge o pareja a cargo.
                     8% más de 2,5 BPC* ($9.620) con hijos y pareja a cargo. -->
@@ -149,7 +183,11 @@
                     FRL
                 </td>
                 <td class="text-rigth">
-                    sueldo*0.125
+                    <?php
+                    $frl=$f->getCargo()->getSueldo()->getSueldo()*0.125;
+                    echo $frl;
+                    ?>
+
                 </td>
             </tr>
             <tr>
@@ -157,14 +195,37 @@
                     IRPF
                 </td>
                 <td class="text-rigth">
+                    <?php
+                    $irpf=$f->getCargo()->getSueldo()->getSueldo();
+                    if($irpf<=26936){
+                        $irpf=$irpf*0;
+                        
+                    }elseif ($irpf<=38480) {
+                        $irpf= $irpf*0.1;                        
+                    }elseif ($irpf<=57720) {
+                        $irpf= $irpf*0.15;                        
+                    }elseif ($irpf<=115440) {
+                        $irpf= $irpf*0.24;
+                    }elseif ($irpf<=192400) {
+                        $irpf= $irpf*0.24;                        
+                    }elseif ($irpf<=288600) {
+                        $irpf= $irpf*0.27;
+                    }elseif ($irpf<=442520) {
+                        $irpf= $irpf*0.31;
+                    }else{
+                        $irpf= $irpf*0.36;
+                    }
+                    echo $irpf;
+                    
+                            ?>
                     <!-- 0 a 7 BPC	$0 a 26,936	Exento
                     7 a 10 BPC	26,936 a 38,480	10%
                     10 a 15 BPC	38,480 a 57,720	15%
                     15 a 30 BPC	57,720 a 115,440	24%
                     30 a 50 BPC	115,440 a 192,400	25%
                     50 a 75 BPC	192,400 a 288,600	27%
-                    75 a 115 BPC	288,600 a 442,520	31% -->
-                    Más de 115 BPC	442,520 en adelante	36%
+                    75 a 115 BPC	288,600 a 442,520	31% 
+                    Más de 115 BPC	442,520 en adelante	36%-->
                 </td>
             </tr>
             <tr>
@@ -172,12 +233,28 @@
                     Llegadas tarde
                 </td>
                 <td class="text-rigth">
+                    <?php
+                    $tarde=0;
+                    ?>
                     sueldo*0.125
                 </td>
             </tr>
         </table>
         </div>
     </div>
+   
+    <div class="row">
+        <div class="col text-center border border-dark bg-light">
+            <h6>Total</h6>            
+        </div>
+        <div class="col text-center border border-dark bg-light">
+            <h6>
+                <?php
+                $total=$nominal-$frl-$irpf-$snis-$montepio-$tarde;
+                echo $total;
+                ?>
+            </h6>
+        </div>
     </div>
     
     
