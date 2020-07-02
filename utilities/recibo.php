@@ -33,6 +33,10 @@ $f = $_SESSION["func"];
           .from(element)
           .save();
       }
+      
+      function goBack() {
+          window.history.back();
+      }
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +44,7 @@ $f = $_SESSION["func"];
 </head>
 <body>
     <button onclick="generatePDF()">Descargar como PDF</button>
+    <button onclick="goBack()">Volver atras</button>
     <div id="recibo">
     <img src="../img/logo.jpg" class="float-left border border-dark" width="150px" height="116px">
     <div class="row">    
@@ -108,16 +113,16 @@ $f = $_SESSION["func"];
                         ?>
                     </td>
                 </tr>
-                <tr>
+                <!--<tr>
                     <td class="text-left">
                         Sueldo Nominal
                     </td>
                     <td class="text-rigth">
                         <?php
-                        echo $f->getCargo()->getSueldo()->getSueldo();
+                        //echo $f->getCargo()->getSueldo()->getSueldo();
 //                       ?>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td class="text-left">
                         Horas extras simple
@@ -134,7 +139,13 @@ $f = $_SESSION["func"];
                     </td>
                     <td class="text-rigth">
                         <?php
-                        $f->getCargo()->getSueldo();
+                        
+                        $horas= $f->getCargo()->getSueldo()->getTotal();
+                        if ($horas=0){
+                            echo 0;
+                        }else{
+                            echo $horas;
+                        }
                         ?>
                     </td>
                 </tr>
@@ -250,7 +261,7 @@ $f = $_SESSION["func"];
         <div class="col text-center border border-dark bg-light">
             <h6>
                 <?php
-                $total=$nominal-$frl-$irpf-$snis-$montepio-$tarde;
+                $total=$nominal+$horas-$frl-$irpf-$snis-$montepio-$tarde;
                 echo $total;
                 ?>
             </h6>

@@ -70,7 +70,7 @@ date_default_timezone_set("America/Montevideo");
             <a class="nav-link" href="../index.html">Inicio</a>
         </li>
         <li>
-        <a href="#" class="nav-link">Ver recibo</a>
+        <a href="../utilities/recibo.php" class="nav-link" >Ver recibo</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getNivel()=="esJefe")or
@@ -96,7 +96,7 @@ date_default_timezone_set("America/Montevideo");
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Log out</a>
+            <a class="nav-link" href="logout.php">Log out</a>
         </li>
         </ul>
         <div class="row">

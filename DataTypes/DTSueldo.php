@@ -9,6 +9,9 @@ class DTSueldo{
         
         
         $this->sueldo = $t;
+        $valorDia=$t/30;
+        $this->hora=$valorDia/8;
+        $this->total=0;
     } 
 
     public function getSueldo()
