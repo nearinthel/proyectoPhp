@@ -30,7 +30,7 @@ interface iControladorConexion {
 
     public function deleteAnuncio($nroAnuncio);    
     
-    public function insertMarca($hora, $registro, $tipoMarca,$mes, $anio, $inconsistencia);
+    public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia);
     
     public function updateMarca($hora, $registro, $tipoMarca,$mes, $anio, $inconsistencia);
 

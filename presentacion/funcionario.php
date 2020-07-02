@@ -26,8 +26,10 @@ include '../utilities/diasDelMes.php';
 include_once '../DataTypes/DTSueldo.php';
 include_once '../DataTypes/DTCargo.php';
 include_once '../clases/Funcionario.php';
+date_default_timezone_set("America/Montevideo");
+
     $f = $_SESSION["func"];
-    $m=new DateTime("now");
+    $m=new DateTime('now');
     if(!isset($_POST['mes'])){
         $mes=$m->format("m");
         $numes = numAMeses::mes($mes);
@@ -35,8 +37,32 @@ include_once '../clases/Funcionario.php';
     else{
         $mes= substr($_POST['mes'],-2);
         $numes = numAMeses::mes($mes);
-    }    
-    
+     }
+    $fma='Y-m-d H:i:s';
+    $e1= DateTime::createFromFormat($fma,'2020-06-01 08:00:00');
+    $e2= DateTime::createFromFormat($fma,'2020-06-02 07:34:34');
+    $e3= DateTime::createFromFormat($fma,'2020-06-03 07:56:04');
+    $e4= DateTime::createFromFormat($fma,'2020-06-04 08:03:44');
+    $e5= DateTime::createFromFormat($fma,'2020-06-05 08:04:33');
+    $e6= DateTime::createFromFormat($fma,'2020-06-06 07:59:00');
+    $s1= DateTime::createFromFormat($fma,'2020-06-01 16:02:33');
+    $s2= DateTime::createFromFormat($fma,'2020-06-02 16:00:00');
+    $s3= DateTime::createFromFormat($fma,'2020-06-03 15:55:34');
+    $s4= DateTime::createFromFormat($fma,'2020-06-04 16:23:33');
+    $s5= DateTime::createFromFormat($fma,'2020-06-05 15:23:45');
+    $s6 = DateTime::createFromFormat($fma,'2020-06-06 16:00:00');
+    $f->ingresarMarca($e1,0);
+    $f->ingresarMarca($e2,0);
+    $f->ingresarMarca($e3,0);
+    $f->ingresarMarca($e4,0);
+    $f->ingresarMarca($e5,0);
+    $f->ingresarMarca($e6,0);
+    $f->ingresarMarca($s1,1);
+    $f->ingresarMarca($s2,1);
+    $f->ingresarMarca($s3,1);
+    $f->ingresarMarca($s4,1);
+    $f->ingresarMarca($s5,1);
+    $f->ingresarMarca($s6,1);
 ?>  
     <div class="bg" style="overflow: scroll">
         <ul class="nav justify-content-end">
@@ -78,7 +104,8 @@ include_once '../clases/Funcionario.php';
                 <div class="container">
                 <h2><?php echo $f->getNombre()." ".$f->getApellido(); ?></h2>
                     <div class="card" style="width:400px">
-                        <img class="card-img-top" src="../img/power.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top" src="<?php echo '../img/'.$f->getRegistro().'.jpg'?>" 
+                                alt="Card image" style="width:100%">
                         <div class="card-body">
                               <h4 class="card-title"><?php echo  "Cargo: ".$f->getCargo()->getNivel(); ?></h4>
                               <p class="card-text">Explicacion del cargo(segun empresa)</p>
@@ -109,7 +136,12 @@ include_once '../clases/Funcionario.php';
                     $tope = diasDelMes::UltimoDia($m->format("Y"),$mes);
                     if($m->format("m")==$mes){
                         $tope=$m->format("d");
-                    }                    
+                    }
+                    $con = ControladorConexion::getInstance();
+                    $entradas = array();
+                    $salidas = array();
+                    $entradas = $con->getMarcasMes($f,0,$mes,$m->format("Y"));
+                    $salidas = $con->getMarcasMes($f,1,$mes,$m->format("Y"));     
                     for ($i=1; $i <=$tope ; $i++) {
                         echo "<tr>";
                         echo "<td>";
@@ -125,10 +157,51 @@ include_once '../clases/Funcionario.php';
                             echo "8:00-16:00";
                         }
                         echo "</td>";
+                        echo "<td>";
+                        if($i<10){
+                            $ind= "0".$i;
+                        }elseif($i<20){
+                            $ind= "2".$i;
+                        }else{$ind= "3".$i;}
+                        if(isset($entradas[$ind])){                            
+                            echo $entradas[$ind]->format('H:i');}
+                        echo "</td>";
+                        echo "<td>";
+                        if(isset($salidas[$ind])){
+                        echo $salidas[$ind]->format('H:i');}
+                        echo "</td>";
+                        echo "<td>";
+                        $bandera = false;
+                        if(isset($entradas[$ind])){
+                            if($f->verificarInconsistencia($entradas[$ind],0)){
+                                $bandera = true;
+                                echo "LLegada tarde";
+                            }
+                        }
+                        if(isset($salidas[$ind])){
+                            if($f->verificarInconsistencia($salidas[$ind],1)){
+                                if($bandera){
+                                    echo " - ";
+                                }
+                                echo "Salida antes de hora";
+                            }
+                        }//falta ver como hacer para que te agregue solo inconsistencia
+                        echo "</td>";
                         echo "</tr>";
-                        
-                    }   
-
+                    }
+                       
+                        // for ($i=0 ; $i < count($entradas) ; $i++ ) {
+                        //     echo "<tr>";
+                        //     echo "<td>"; 
+                            
+                        //     echo "</td>";
+                        //     echo "<td>";
+                            
+                        //     echo "</td>";
+                        //     echo "</tr>";
+                                       
+                      
+                    
                     ?>
                     
                     

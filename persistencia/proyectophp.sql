@@ -97,11 +97,12 @@ CREATE TABLE `justifica` (
 --
 
 CREATE TABLE `marcas` (
-  `hora` time NOT NULL,
+  `hora` datetime NOT NULL,
   `registro` int(11) NOT NULL,
   `tipoMarca` varchar(25) COLLATE utf8_bin NOT NULL,
-  `mes` date NOT NULL,
-  `anio` date NOT NULL,
+  `dia` varchar(2) COLLATE utf8_bin NOT NULL,
+  `mes` varchar(2) COLLATE utf8_bin NOT NULL,
+  `anio` varchar(4) COLLATE utf8_bin NOT NULL,
   `inconsistencia` char(1) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 

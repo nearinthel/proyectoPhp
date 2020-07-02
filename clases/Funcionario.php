@@ -136,25 +136,27 @@ class Funcionario implements SplObserver{
         //el tipo lo ingresa el que hace la marca
         $fm = new FuncionarioMarca();
         $fm->setFuncionario($this);
-        $fm->crearMarca($hora,$tipo);
-        arraypush($this->fM,fm);
+        //$fm->crearMarca($hora,$tipo);
+        array_push($this->fM,$fm);
         $registro=$this->registro;
-        $inconsistencia=$this->verificarInconsistencia($hora);
+        $inconsistencia=$this->verificarInconsistencia($hora, $tipo);
         $controlador= ControladorConexion::getInstance();
         $controlador->insertMarca($hora, $registro, $tipo, $inconsistencia);
-
     }
 
-    function verificarInconsistencia($hora){
+    function verificarInconsistencia($hora, $tipo){
     //inconsistencias:llegar tarde, irte antes
-    //por ahora solo fijo te deja irte despues de las 16
-    $h = $hora->format('%h');
-    $m = $hora->format('%i');
-    if(($h<"8") or($h < "16")){
-        return true;
-    }else {
-        return false;
-    }   
+    $h = $hora->format('H:i');
+    $h= new DateTime($h);
+    if($tipo == 0){
+        $en = '08:00';
+        $entrada = new DateTime($en);        
+        return ($entrada<$h);
+    }else{
+        $sa = '16:00';    
+        $salida = new DateTime($sa);
+        return ($salida>$h);
+    }
     }           
      
     public function ingresarAnuncio($nroAnuncio, $just){

@@ -17,6 +17,9 @@ include_once 'iControladorConexion.php';
 include_once 'tblFuncionario.php';
 include_once 'tblAnuncio.php';
 include_once 'tblMarca.php';
+include_once '../clases/Funcionario.php';
+include_once '../clases/FuncionarioMarca.php';
+
 include_once '../DataTypes/DTCargo.php';
 include_once '../DataTypes/DTSueldo.php';
 
@@ -152,7 +155,7 @@ class ControladorConexion implements iControladorConexion {
         
     }
     
-    public function insertMarca($hora, $registro, $tipoMarca,$mes, $anio, $inconsistencia){
+    public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia){
         $tabla= tblMarca::getInstance();
         $consulta=$tabla->insert($hora, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
@@ -232,12 +235,23 @@ class ControladorConexion implements iControladorConexion {
 //        
 //    }
 
-    public function getMarcas($fun,$mes)
+    public function getMarcasMes($fun,$tipo,$mes,$anio)
     //les das el fun y le carga las marcas
     {
         $tabla= tblMarca::getInstance();
-        $consulta=$tabla->select($fun->getRegistro());
-
+        $consulta=$tabla->selectMarcasMes($fun->getRegistro(),$tipo,$mes, $anio);
+        $conexion=$this->getConexion();
+        //$res = $conexion->query($consulta);
+        // $fm = new FuncionarioMarca();
+        $ar = array();
+        $result = $conexion->query($consulta) or die($conexion->error);
+        while ($row = $result->fetch_assoc()) {
+            $hora= $row["hora"];
+            $h= new DateTime($hora);
+            $ar[$row["dia"]]=$h;
+        }
+        return $ar;
+//falte meterselo al func y arreglarlo que sea en funcionario no aca
     }
     
     public function getFuncionarioMail($registro){

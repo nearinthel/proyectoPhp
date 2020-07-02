@@ -28,12 +28,14 @@ class tblMarca {
 
         return self::$instance;
     }
-     public function insert($hora, $registro, $tipo,$mes, $anio, $inconsistencia){
+     public function insert($h, $registro, $tipo, $inconsistencia){
          
-        $hora=$hora->format('H:i:s');
-          
-        $sql ="insert into marca (hora, registro, tipoMarca,mes, anio, inconsistencia) values ("
-                . "'$hora', '$registro', '$tipo','$mes','$anio' '$inconsistencia')";
+        $hora=$h->format('Y-m-d H:i:s');
+        $dia=$h->format('d');
+        $mes = $h->format('m');
+        $anio = $h->format('Y');   
+        $sql ="INSERT INTO marcas (hora, registro, tipoMarca, dia, mes, anio, inconsistencia) VALUES (
+                '$hora', '$registro', '$tipo','$dia','$mes','$anio','$inconsistencia')";
                
         return $sql;
     }
@@ -42,7 +44,7 @@ class tblMarca {
         
         $hora=$hora->format('H:i:s');
         
-        $sql="update marca set hora='$hora', registro='$registro', tipoMarca='$tipo',mes='$mes',anio='$anio', inconsistencia='$inconsistencia'"
+        $sql="update marcas set hora='$hora', registro='$registro', tipoMarca='$tipo',mes='$mes',anio='$anio', inconsistencia='$inconsistencia'"
                 . "where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
         return $sql;
     }
@@ -51,14 +53,21 @@ class tblMarca {
         
         $hora=$hora->format('H:i:s');
         
-        $sql="delete from marca where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
+        $sql="delete from marcas where hora='$hora' and registro='$registro' and tipoMarca='$tipo' ";
         
         return $sql;
     }
     
     public function select($registro, $hora, $tipoMarca){
         $hora=$hora->format('H:i:s');
-        $sql="select * from marca where registro='$registro' and hora='$hora' and tipomarca='$tipoMarca'";
+        $sql="SELECT * FROM marcas WHERE registro='$registro' AND hora='$hora' AND tipoMarca='$tipoMarca'";
+        return $sql;
+    }
+
+    public function selectMarcasMes($registro, $tipoMarca, $mes, $anio)
+    {
+        $sql="SELECT * FROM marcas WHERE registro='$registro' AND tipoMarca='$tipoMarca' AND
+            mes='$mes' AND anio='$anio'";
         return $sql;
     }
 
