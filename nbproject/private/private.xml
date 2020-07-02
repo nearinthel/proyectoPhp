@@ -8,12 +8,17 @@
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/enumES.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/Conexion.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/presentacion/ingresar.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/presentacion/ingresarFunc.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/controladores/IControladorFuncionario.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/config/config.ini</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/index.html</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/FuncionarioMarca.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/controladores/ControladorAnuncio.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTHorario.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTInconsistencia.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/ControladorConexion.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/utilities/recibo.html</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/utilities/recibo.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/controladores/ControladorFuncionario.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/tblMarca.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Empleado.php</file>
@@ -22,9 +27,11 @@
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Supervisor.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTSueldo.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTCargo.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/presentacion/ingSistema.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Jefe.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/controladores/pruebasMail.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/persistencia/iControladorConexion.php</file>
+            <file>file:/C:/xampp/htdocs/PhpProject1/presentacion/logOut.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Anuncio.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/DataTypes/DTMarca.php</file>
             <file>file:/C:/xampp/htdocs/PhpProject1/clases/Funcionario.php</file>

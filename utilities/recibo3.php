@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+
+<?php
+
+include_once '../clases/Funcionario.php';
+session_id("elfun"); 
+session_start(); 
+
+$f = $_SESSION["func"];
+?>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../estilos/estilo.css">
@@ -6,12 +15,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
+    <script src="../librerias/html2pdf.js/dist/html2pdf.bundle.min.js"></script>
+        <script>
+      function generatePDF() {
+        // Choose the element that our invoice is rendered in.
+        const element = document.getElementById("recibo");
+        // Choose the element and save the PDF for our user.
+        var opt = {
+                margin:       1,
+                filename:     'recibo.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 4 },
+                jsPDF:        { unit: 'in', format: 'A4', orientation: 'landscape' }
+    };
+        html2pdf()
+          .set(opt)
+          .from(element)
+          .save();
+      }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recibo de Sueldo</title>
 </head>
 <body>
-    <div class="recibo">
+    <button onclick="generatePDF()">Descargar como PDF</button>
+    <div id="recibo">
     <img src="../img/logo.jpg" class="float-left border border-dark" width="150px" height="116px">
     <div class="row">    
         <div class="col-sm-12 text-center border border-dark bg-light">
@@ -43,7 +72,7 @@
             <h6>mas php</h6>
         </div>
         <div class="col-sm-4 text-center border border-dark bg-light ">
-            <h6>echo $f->getCI();</h6>
+            <h6><?php echo $f->getRegistro() ?></h6>
         </div>
     </div>
     <div class="row">
@@ -53,7 +82,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12 text-center border border-dark bg-light">
-            <h6>echo $f->getApellido()." ".$f->getNombre();</h6>
+            <h6><?php echo $f->getApellido()." ".$f->getNombre();?></h6>
         </div>
         
     </div>
@@ -73,7 +102,9 @@
                         Sueldo Nominal
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        $f->getCargo()->getSueldo();
+                        ?>
                     </td>
                 </tr>
                 <tr>
@@ -81,7 +112,9 @@
                         Sueldo Nominal
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        $f->getCargo()->getSueldo();
+//                       ?>
                     </td>
                 </tr>
                 <tr>
@@ -89,7 +122,9 @@
                         Horas extras simple
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        $f->getCargo()->getSueldo();
+                        ?>
                     </td>
                 </tr>
                 <tr>
@@ -97,7 +132,9 @@
                         Horas extras doble
                     </td>
                     <td class="text-rigth">
-                        $f->getSueldo();
+                        <?php
+                        $f->getCargo()->getSueldo();
+                        ?>
                     </td>
                 </tr>
             </table>

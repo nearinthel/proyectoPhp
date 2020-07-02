@@ -288,6 +288,16 @@ class ControladorConexion implements iControladorConexion {
         return $f; 
 
     }
+    
+    public function getSupervisor($registro){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->getSupervisor($registro);
+        $conexion=$this->getConexion();
+
+        return $conexion->query($consulta);
+        
+    }
+    
    
 }
 

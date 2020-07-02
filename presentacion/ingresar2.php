@@ -4,8 +4,15 @@
     include_once '../clases/Funcionario.php';
     //include_once '../controladores/ControladorFuncionario.php';
     include_once '../persistencia/ControladorConexion.php';
+    
+    include_once '../utilities/password.php';
    
     $passi= $_POST['pass'];
+    
+        
+    $contPass= Password::getInstance();
+    
+    $passi=$contPass->hash($passi);
     
     // if(!isset($_COOKIE['reg'])){
         if(isset($_POST['check'])){
@@ -40,6 +47,7 @@
     //aca iria una pagina de inicio de la empresa
     $con = ControladorConexion::getInstance();
     $func = $con->getFuncionario($_POST['reg']);
+
     $_SESSION["func"] = $func;
     $_SESSION["pass"] = $passi;
     if($func->getPass() == $passi){
@@ -50,7 +58,7 @@
         echo "<li class=".'"nav-item"'.">
                 <a class=".'"nav-link"'. "href=".'"../utilities/recibo3.php"'.">Ver el recibo de sueldo</a></li>";
         echo "<li class=".'"nav-item"'.">
-                <a class=".'"nav-link"'. "href=".'"#"'.">Logout</a></li></ul>";
+                <a class=".'"nav-link"'. "href=".'"logout.php"'.">Logout</a></li></ul>";
     }else{
         echo "<h3 class=".'"text-white text-center"'.">Contraseña Incorrecta<h3>";
         echo "<a class=".'"nav-link"'. "href=".'"ingSistema.php"'.">Probar nuevamente</a></li>";
