@@ -25,7 +25,7 @@
                 <div class="card card-signin my-5">
                   <div class="card-body">
                     <h5 class="card-title text-center">Ingresar al Sistema</h5>
-                    <form class="form-signin" action="ingresar.php" method="POST">
+                    <form class="form-signin" action="ingresar2.php" method="POST">
                       <div class="form-label-group">
                         <input type="text" id="reg" name="reg" class="form-control" placeholder="Registro" 
                         value="<?php if(isset($_COOKIE['fun'])){echo $_COOKIE['fun']; } ?>"

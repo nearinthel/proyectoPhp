@@ -69,7 +69,7 @@ class Anuncio implements SplSubject{
         $this->descripcion = $descripcion;
         echo $this->descripcion;
        // $this->storage = new SplObjectStorage;
-        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
+        $this->estado="Numero de Anuncio:" .$this->nroAnuncio." Descricpcion: ".$this->getDescripcion();
         $this->notify();
 
     }
