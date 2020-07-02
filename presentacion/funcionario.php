@@ -1,6 +1,5 @@
 <?php 
-include_once '../clases/Funcionario.php';
-session_id("elfun"); 
+include_once '../clases/Funcionario.php'; 
 session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,40 +64,11 @@ date_default_timezone_set("America/Montevideo");
     $f->ingresarMarca($s6,1);
 ?>  
     <div class="bg" style="overflow: scroll">
-        <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" href="../index.html">Inicio</a>
-        </li>
-        <li>
-        <a href="../utilities/recibo.php" class="nav-link" >Ver recibo</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getNivel()=="esJefe")or
-                                                        ($f->getCargo()->getNivel()=="esSuper"))
-                                                            {echo '';}else{echo '"display:none"';} ?>>
-            Bandeja de Anuncios
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getNivel()!="esJefe"))
-                                                        {echo '"display:none"';}?>>
-            Crear Anuncio
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#" style=<?php if($f->getCargo()->getNivel()!="esJefe")echo '"display:none"'; ?>>
-            Modificar Funcionario
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="agregarFuncionario.php" style=<?php if($f->getCargo()->getNivel()!="esJefe"){echo '"display:none"';} ?>>
-            Agregar Funcionario
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="logout.php">Log out</a>
-        </li>
-        </ul>
+
+
+
+        <?php include_once '../utilities/navBar.php' ?>
+
         <div class="row">
             <div class="col-sm-4">
                 <div class="container">
@@ -183,9 +153,32 @@ date_default_timezone_set("America/Montevideo");
                                 if($bandera){
                                     echo " - ";
                                 }
+                                $bandera=true;
                                 echo "Salida antes de hora";
                             }
                         }//falta ver como hacer para que te agregue solo inconsistencia
+                        echo "</td>";
+                        
+                        
+                        echo "<td>"; 
+                        if($bandera){
+                            $_SESSION['dia']= $d;    
+                            echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
+                            echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
+                            echo "</a>";
+                            }
+                        if(isset($entradas[$ind])or isset($salidas[$ind])){
+                            if(($d->format("D")=='Sun')or($d->format("D")=='Sat')){
+                                $_SESSION['dia']= $d;
+                                echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
+                                echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
+                                echo "</a>";
+                            }
+                        }
+                        // if(isset($entradas[$ind]) and isset($salidas[$ind])){
+                        // if($entradas[$ind]->diff(($salidas[$ind]))>9){
+                        //     echo "entre";
+                        // }}
                         echo "</td>";
                         echo "</tr>";
                     }
