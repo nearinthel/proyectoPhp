@@ -17,6 +17,7 @@ class DTCargo {
     
     private $nivel;
     private $dtsueldo;
+    private $level;
     
     function __construct($n,$dtS) {
         $this->nivel = $n;
@@ -38,6 +39,16 @@ class DTCargo {
     function setSueldo($sueldo) {
         $this->sueldo = $dtsueldo;
     }
+    
+    function getLevel() {
+        return $this->level;
+    }
+
+    function setLevel($level) {
+        $this->level = $level;
+    }
+
+
 
 
 

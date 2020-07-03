@@ -19,8 +19,10 @@
     $nombrearchivo = $_FILES['img']['name'];
     $directoriotemp = $_FILES['img']['tmp_name'];
     $tipoarchivo = $_FILES['img']['type'];
+    echo $tipoarchivo;
     $tamanio = $_FILES['img']['size']; 
-    $ubicacion = $directoriofinal. basename($reg);
+    //$ubicacion = $directoriofinal. basename($reg);
+    $ubicacion = $directoriofinal. basename($_POST["ci"]);
     move_uploaded_file($_FILES['img']['tmp_name'], $ubicacion);
     $directorio = 'img/'.$nombrearchivo;
     $con = ControladorConexion::getInstance();

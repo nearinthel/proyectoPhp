@@ -11,25 +11,25 @@ $f = $_SESSION["func"];
     <a href="../utilities/recibo.php" class="nav-link" target="_blank">Ver recibo</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getNivel()=="esJefe")or
-                                                ($f->getCargo()->getNivel()=="esSuper"))
+    <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getLevel()=="esJefe")or
+                                                ($f->getCargo()->getLevel()=="esSuper"))
                                                     {echo '';}else{echo '"display:none"';} ?>>
     Bandeja de Anuncios
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getNivel()!="esJefe"))
+    <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getLevel()!="esJefe"))
                                                 {echo '"display:none"';}?>>
     Crear Anuncio
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#" style=<?php if($f->getCargo()->getNivel()!="esJefe")echo '"display:none"'; ?>>
+    <a class="nav-link" href="#" style=<?php if($f->getCargo()->getLevel()!="esJefe")echo '"display:none"'; ?>>
     Modificar Funcionario
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="agregarFuncionario.php" style=<?php if($f->getCargo()->getNivel()!="esJefe"){echo '"display:none"';} ?>>
+    <a class="nav-link" href="agregarFuncionario.php" style=<?php if($f->getCargo()->getLevel()!="esJefe"){echo '"display:none"';} ?>>
     Agregar Funcionario
     </a>
 </li>
@@ -37,4 +37,5 @@ $f = $_SESSION["func"];
     <a class="nav-link" href="logout.php">Log out</a>
 </li>
 </ul>
-
+<?php
+echo $f->getCargo()->getLevel();?>

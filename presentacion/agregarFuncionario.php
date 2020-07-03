@@ -49,7 +49,7 @@
             <input type="text" id="lname" name="lname" class="form-control" placeholder="Apellido" required>
         </div>
         <div class="form-label-group">
-            <input type="text" id="ci" name="ci" class="form-control" placeholder="Cedúla" required>
+            <input type="text" id="ci" name="ci" class="form-control" placeholder="Cédula" required>
         </div>
         <div class="form-label-group">
         <label>Fecha de nacimiento:    <input type="date" id="fnac" name="fnac" class="form-control" required>

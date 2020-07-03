@@ -280,6 +280,14 @@ class ControladorConexion implements iControladorConexion {
         $f->setFing($row["fing"]);
         $dts = new DTSueldo($row["sueldo"]);
         $dtc = new DTCargo($row["cargo"],$dts);
+        if($row["esSupervisor"]==1){
+            $dtc->setLevel("esSuper");
+        }elseif ($row["esJefe"]==1) {
+            $dtc->setLevel("esJefe");
+            
+        }else{
+            $dtc->setLevel("esSubordinado");
+        }
         $f->setCargo($dtc);
         
 
