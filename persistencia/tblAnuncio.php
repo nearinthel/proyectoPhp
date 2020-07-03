@@ -29,28 +29,43 @@ class tblAnuncio {
         return self::$instance;
     }
     
-    public function insert($nroAnuncio, $descripcion){
+    public function insert($nroAnuncio, $descripcion, $idAnuncio, $justificacion){
              
-        $sql ="insert into anuncio (nroAnuncio,descripcion) values ("
-                . "'$nroAnuncio', '$descripcion')";
-        
-        
+        $sql ="INSERT INTO anuncio (nroAnuncio,descripcion,idAnuncio,justificacion) VALUES 
+            ('$nroAnuncio', '$descripcion' , '$idAnuncio' , '$justificacion')";
         return $sql;
     }
   
     public function update($nroAnuncio, $descripcion){
         
-        $sql="update anuncio set nroAnuncio='$nroAnuncio', descripcion='$descripcion', "
-                . "where nroAnuncio='$nroAnuncio' ";
+        $sql="UPDATE anuncio SET nroAnuncio='$nroAnuncio', descripcion='$descripcion', WHERE nroAnuncio='$nroAnuncio' ";
         return $sql;
     }
     
     public function delete($nroAnuncio){
-        $sql="delete from anuncio where where nroAnuncio='$nroAnuncio' ";
-        
+        $sql="DELETE FROM anuncio WHERE nroAnuncio='$nroAnuncio' ";        
         return $sql;
     }
 
+    public function select($nroAnuncio, $idAnuncio){
+        $sql="SELECT * FROM anuncio WHERE idAnuncio='$idAnuncio' AND nroAnuncio='$nroAnuncio'";        
+        return $sql;
+    }
+
+    public function selectCountAnuncio($nroAnuncio){
+        $sql="SELECT * FROM anuncio WHERE nroAnuncio='$nroAnuncio'";        
+        return $sql;
+    }
+    public function selectDesc($nroAnuncio){
+        $sql="SELECT descripcion FROM anuncio WHERE nroAnuncio='$nroAnuncio'";        
+        return $sql;
+    }
+
+    public function selectAnuncios()
+    {
+        $sql="SELECT nroAnuncio, descripcion FROM anuncio WHERE idAnuncio=0";        
+        return $sql; 
+    }
     
 
 }

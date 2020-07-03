@@ -7,6 +7,7 @@
  */
 
 include_once 'ControladorConexion.php';
+include_once '../clases/Anuncio.php';
 
 try{
 $registro=44853435;

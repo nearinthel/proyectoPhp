@@ -30,22 +30,20 @@ class tblFuncionario {
     
     public function insert($registro, $pass, $nombre, $apellido,$mail, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe){
-                
         $fnac= $fnac->format('Y-m-d H:i:s');
         $fing=$fing->format('Y-m-d H:i:s');
         $entrada=$entrada->format('H:i:s');
         $salida=$salida->format('H:i:s');
 
-        $sql ="insert into funcionario (registro, pass , nombre, apellido,mail, fnac,fing, cargo, sueldo, "
-                . "entrada, salida, esSubordinado, esSupervisor, esJefe) values ("
-                . "'$registro','$pass', '$nombre', '$apellido','$mail', '$fnac','$fing', '$cargo'"
-                . ",$sueldo,'$entrada', '$salida', '$esSubordinado', '$esSupervisor', '$esJefe')";
+        $sql ="INSERT INTO funcionario (registro, pass , nombre, apellido,mail, fnac,fing, cargo, sueldo, 
+            entrada, salida, esSubordinado, esSupervisor, esJefe) VALUES ('$registro','$pass', '$nombre',
+             '$apellido','$mail', '$fnac','$fing', '$cargo', '$sueldo','$entrada', '$salida', '$esSubordinado', '$esSupervisor', '$esJefe')";
               
         return $sql;
     }
     
     public function agregarSubordinado($primerRegistro, $segundoRegistro){
-        $sql="insert into tiene (regSup, regSub) values ('$primerRegistro','$segundoRegistro')";
+        $sql="INSERT INTO tiene (regSup, regSub) VALUES ('$primerRegistro','$segundoRegistro')";
         return $sql;
     }
     
@@ -69,11 +67,12 @@ class tblFuncionario {
         return $sql;
     }
     
-    public function justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia){
-        $hora=$hora->format('H:i:s');
+    public function justifica($nroAnuncio, $entrada, $salida, $registro, $tipoMarca, $inconsistencia){
+       
                 
-        $sql ="insert into justifica (nroAnuncio, hora, registro, tipoMarca, inconsistencia) values ("
-                . "'$nroAnuncio', '$hora', '$registro', '$tipoMarca', '$inconsistencia')";
+        $sql ="INSERT INTO justifica (nroAnuncio, entrada, salida, registro, tipoMarca, inconsistencia) VALUES (
+
+        '$nroAnuncio', '$entrada', '$salida', '$registro', '$tipoMarca', '$inconsistencia')";
                 
         return $sql;
         
@@ -108,7 +107,7 @@ class tblFuncionario {
     }
     
     public function getSupervisor($regSub){
-        $sql="select * from tiene where regSub='$regSub'";
+        $sql="SELECT regSup FROM tiene WHERE regSub='$regSub'";
         return $sql;
     }
     

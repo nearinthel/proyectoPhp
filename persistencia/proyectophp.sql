@@ -40,7 +40,9 @@ CREATE TABLE `acepta` (
 
 CREATE TABLE `anuncio` (
   `nroAnuncio` int(11) NOT NULL,
-  `descripcion` varchar(140) COLLATE utf8_bin NOT NULL
+  `idAnuncio` int(11) NOT NULL,
+  `descripcion` varchar(140) COLLATE utf8_bin NOT NULL,
+  `justificacion` varchar(140) COLLATE utf8_bin
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
@@ -84,7 +86,9 @@ INSERT INTO `funcionario` (`registro`, `pass`, `nombre`, `apellido`, `mail`, `fn
 
 CREATE TABLE `justifica` (
   `nroAnuncio` int(11) NOT NULL,
-  `hora` time NOT NULL,
+  `idAnuncio` int(11) NOT NULL,
+  `entrada` time NOT NULL,
+  `salida` time NOT NULL,
   `registro` int(11) NOT NULL,
   `tipoMarca` varchar(25) COLLATE utf8_bin NOT NULL,
   `inconsistencia` char(1) COLLATE utf8_bin NOT NULL

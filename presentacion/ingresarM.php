@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <h1 class = "text-center text-success">Se ingreso una marca de 
+                    <h1 class = "text-center text-primary">Se ingreso una marca de 
                     <?php if($_POST["tipo"]==0){echo "Entrada";}else{echo "Salida";}?> con la hora
                     <?php echo $m->format("H:i a"); ?><h1>
                     <a class=" text-center nav-link" href="../index.html">Ir a inicio</a>
