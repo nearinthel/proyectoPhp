@@ -31,7 +31,7 @@ class tblFuncionario {
     public function insert($registro, $pass, $nombre, $apellido,$mail, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe){
                 
-        $fnac= $fnac->format('Y-m-d H:i:s');
+        //$fnac= $fnac->format('Y-m-d H:i:s');
         $fing=$fing->format('Y-m-d H:i:s');
         $entrada=$entrada->format('H:i:s');
         $salida=$salida->format('H:i:s');
@@ -112,5 +112,19 @@ class tblFuncionario {
         return $sql;
     }
     
+    public function getSupers(){
+        $sql="select * from funcionario where esSupervisor=1";
+        return $sql;
+    }
+    
+    public function getJefes(){
+        $sql="select * from funcionario where esJefe=1";
+        return $sql;
+    }
+    
+    public function getSubs(){
+        $sql="select * from funcionario where esSubordinado=1";
+        return $sql;
+    }
 
 }

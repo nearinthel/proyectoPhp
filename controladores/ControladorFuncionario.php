@@ -1,8 +1,9 @@
 <?php
 
-include 'Funcionario.php';
+include_once 'Funcionario.php';
+include_once "../persistencia/IControladorConexion.php";
 
-include "../persistencia/ControladorConexion.php";
+include_once "../persistencia/ControladorConexion.php";
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,23 +19,28 @@ include "../persistencia/ControladorConexion.php";
 include_once '../clases/FuncionarioMarca.php';
 include_once '../DataTypes/enumES.php';
 include_once '../persistencia/ControladorConexion.php';
+include_once '../controladores/IControladorFuncionario.php';
 
 class ControladorFuncionario implements IControladorFuncionario {
     
     private static $instance;
     
-    public function getInstance(){
-        if (!isset($this->instance)){
-            $this->instance=new $this->ControladorFuncionario();
+    public static function getInstance()
+    {
+        if (!self::$instance instanceof self){
+        
+            self::$instance = new self();
+           
         }
 
         return self::$instance;
     }
-    
-    public function ingresarFuncionario($param){
-        
+    function __construct() {
         
     }
+
+    
+
     public function ingresarMarca($registro, $hora,$tipo){
         //tipo se lo pasamos 0 entrada 1 salida de la capa de presentacion
         //si no anda hay que mandarle el enumES
@@ -61,14 +67,9 @@ class ControladorFuncionario implements IControladorFuncionario {
         $func->ingresarMarca($hora,$tipo);
         
     }
-    public function ingresarSistema(){
-        
-    }
 
-    public function verSueldo($registro)
-    {
-        # code...
-    }
+
+
     
     public function obtenerInconsistencia($registro, $hora, $tipoMarca){
         
@@ -116,6 +117,34 @@ class ControladorFuncionario implements IControladorFuncionario {
         //         . "entrada, salida, esSubordinado, esSupervisor, esJefe
         return $f; 
         
+    }
+    
+    public function agregarSupers($reg, $esSub, $esSuper, $esJefe){
+        $con= ControladorConexion::getInstance();
+        if ($esSub==1){
+            $res=$con->getSupers();
+            foreach ($res as $row) {
+                $regSuper=$row["registro"];
+                $con->agregarSubordinado($regSuper, $reg);
+            }
+        }elseif($esSuper==1){
+            $res=$con->getJefes();
+            foreach ($res as $row) {
+                $regJefe=$row["registro"];
+                $con->agregarSubordinado($regJefe, $reg);
+            }
+            $res=$con->getSubs();
+            foreach ($res as $row) {
+                $regSub=$row["registro"];
+                $con->agregarSubordinado($reg, $regSub);
+            }        
+        }elseif($esJefe==1){
+            $res=$con->getSupers();
+            foreach ($res as $row) {
+                $regSuper=$row["registro"];
+                $con->agregarSubordinado($reg, $regSuper);
+            }
+        }
     }
 
 

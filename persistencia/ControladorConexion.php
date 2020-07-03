@@ -36,7 +36,9 @@ class ControladorConexion implements iControladorConexion {
     private function getConexion(){
         
         $con=Conexion::getInstance();
+        
         $conexion=$con->getConexion();
+        
         if ($conexion=="Error en la conexion"){
             throw new Exception('Error en la conexion');
         }
@@ -101,16 +103,16 @@ class ControladorConexion implements iControladorConexion {
         $consulta=$tabla->insert($registro, $pass, $nombre, $apellido,$mail, $fnac, 
             $fing, $cargo, $sueldo, $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
         $conexion=$this->getConexion();
-        echo $consulta;
+        
         $conexion->query($consulta);
         
     }
     
-    public function agregarSubordinado($primerRegistro, $segundoRegistro){
+    public function agregarSubordinado($regSuper, $regSub){
         
         
         $tabla= tblFuncionario::getInstance();
-        $consulta=$tabla->agregarSubordinado($primerRegistro, $segundoRegistro);
+        $consulta=$tabla->agregarSubordinado($regSuper, $regSub);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
     }
@@ -305,6 +307,33 @@ class ControladorConexion implements iControladorConexion {
         return $conexion->query($consulta);
         
     }
+    
+    public function getSupers(){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->getSupers();
+        $conexion=$this->getConexion();
+
+        return $conexion->query($consulta);
+    }
+    
+    public function getJefes(){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->getJefes();
+        $conexion=$this->getConexion();
+
+        return $conexion->query($consulta);
+    }
+    
+    public function getSubs(){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->getSubs();
+        $conexion=$this->getConexion();
+
+        return $conexion->query($consulta);
+        
+    }
+    
+    
     
    
 }

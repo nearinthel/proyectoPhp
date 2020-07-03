@@ -1,5 +1,6 @@
 <?php
 include_once '../clases/Funcionario.php'; 
+session_start();
 $f = $_SESSION["func"];
 
 ?>
@@ -24,7 +25,7 @@ $f = $_SESSION["func"];
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#" style=<?php if($f->getCargo()->getLevel()!="esJefe")echo '"display:none"'; ?>>
+    <a class="nav-link" href="nivelesModificar.php" style=<?php if($f->getCargo()->getLevel()!="esJefe")echo '"display:none"'; ?>>
     Modificar Funcionario
     </a>
 </li>
@@ -38,4 +39,4 @@ $f = $_SESSION["func"];
 </li>
 </ul>
 <?php
-echo $f->getCargo()->getLevel();?>
+?> 

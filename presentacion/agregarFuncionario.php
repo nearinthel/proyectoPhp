@@ -11,13 +11,15 @@
     <title>Document</title>
 </head>
 <body>
+
 <div class="bg">
-        <ul class="nav justify-content-end">
+    <?php include '../utilities/navBar.php' ?>
+        <!--<ul class="nav justify-content-end">
         <li class="nav-item">
-            <a class="nav-link" href="../funcionario.php">Planilla</a>
+            <a class="nav-link" href="../presentacion/funcionario.php">Planilla</a>
         </li>
         <li>
-        <a href="#" class="nav-link">Ver recibo</a>
+            <a href="../utilities/recibo.php" class="nav-link">Ver recibo</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">
@@ -35,40 +37,55 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Log out</a>
+            <a class="nav-link" href="logout.php">Log out</a>
         </li>
-    </ul>
+    </ul>-->
     <h5 class="card-title">Ingresar un nuevo funcionario</h5>
+    
     <form class="form-signin" ENCTYPE = "multipart/form-data" action="ingresarFunc.php" method="POST">
     <div class="row">
+
     <div class="col-md-5">
+        <div class="form-label-group">
+            <input type="text" id="ci" name="ci" class="form-control" placeholder="Cédula" required >
+        </div>
         <div class="form-label-group">
             <input type="text" id="name" name="name" class="form-control" placeholder="Nombre" required>
         </div>
         <div class="form-label-group">
             <input type="text" id="lname" name="lname" class="form-control" placeholder="Apellido" required>
         </div>
+
         <div class="form-label-group">
-            <input type="text" id="ci" name="ci" class="form-control" placeholder="Cédula" required>
+            <input type="text" id="mail" name="mail" class="form-control" placeholder="Mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+        </div>
+        
+        <div class="form-label-group">
+            <input type="text" id="mail" name="cargo" class="form-control" placeholder="cargo" required>
+        </div>
+        <div class="form-label-group">
+            <input type="password" id="pass" name="pass" class="form-control" placeholder="Password" required>
         </div>
         <div class="form-label-group">
         <label>Fecha de nacimiento:    <input type="date" id="fnac" name="fnac" class="form-control" required>
         </label>
         </div>
     </div>
+        
     <div class="col-md-5 text-center">
     <div class="form-label-group">
         <label for="img">Ingrese una foto del funcionario 
         <input type="file" name="img" class="form-control-file"></label>
     </div>
     <div class="form-label-group">
-        <label for="nivel">Cargo del funcionario</label>
+        <label for="nivel">Nivel del funcionario</label>
         <select name="nivel" id="nivel">
             <option value="esJefe">Jefe</option>
             <option value="esSuper">Supervisor</option>
-            <option value="esSub">Cajero</option>
+            <option value="esSub">Empleado</option>
+            <!--<option value="esSub">Cajero</option>
             <option value="esSub">Operario</option>
-            <option value="esSub">Administrativo</option>
+            <option value="esSub">Administrativo</option>-->
         </select>
     </div>
     <div class="form-label-group">

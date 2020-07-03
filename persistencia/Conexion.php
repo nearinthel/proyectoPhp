@@ -19,17 +19,19 @@ class Conexion {
 
     private function __construct() {
         
-        $archivo="../config/config.ini";
+        //$archivo="../config/config.ini";
         
-        $contenido= parse_ini_file($archivo, false);
-//	$host="localhost";
-//	$user="root";
-//	$pass="12345";
-//	$bd="proyectophp";
-        $host=$contenido["host"];
-        $user=$contenido["user"];
-        $pass=$contenido["pass"];
-        $bd=$contenido["bd"];
+//        $contenido= parse_ini_file($archivo, false);
+	$host="localhost";
+	$user="root";
+	$pass="12345";
+	$bd="proyectophp";
+//        $host=$contenido["host"];
+//        $user=$contenido["user"];
+//        $pass=$contenido["pass"];
+//        $bd=$contenido["bd"];
+        
+        $archivo=0;
 	$con = new mysqli($host,$user,$pass, $bd);
 	//mysqli_select_db($con,$bd);
 	//if (mysqli_connect_errno($con))

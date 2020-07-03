@@ -1,6 +1,6 @@
 <?php 
 include_once '../clases/Funcionario.php'; 
-session_start(); ?>
+//session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +14,11 @@ session_start(); ?>
     <title>Registro Personal</title>
 </head>
 <body>
+        <div class="bg" style="overflow: scroll">
+
+
+
+<?php include_once '../utilities/navBar.php' ?>
     
 <?php
 
@@ -63,11 +68,11 @@ date_default_timezone_set("America/Montevideo");
     $f->ingresarMarca($s5,1);
     $f->ingresarMarca($s6,1);
 ?>  
-    <div class="bg" style="overflow: scroll">
+    <!--<div class="bg" style="overflow: scroll">-->
 
 
 
-        <?php include_once '../utilities/navBar.php' ?>
+        <?php //include_once '../utilities/navBar.php' ?>
 
         <div class="row">
             <div class="col-sm-4">
@@ -175,10 +180,15 @@ date_default_timezone_set("America/Montevideo");
                                 echo "</a>";
                             }
                         }
-                        // if(isset($entradas[$ind]) and isset($salidas[$ind])){
-                        // if($entradas[$ind]->diff(($salidas[$ind]))>9){
-                        //     echo "entre";
-                        // }}
+                        if(isset($entradas[$ind]) and isset($salidas[$ind])){
+                            $aux1= ($entradas[$ind]->diff(($salidas[$ind])))->format('%H:%i');
+                            $minH= '09:00';
+                            if($aux1>=$minH){
+                                echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
+                                echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
+                                echo "</a>";
+                            }
+                        }
                         echo "</td>";
                         echo "</tr>";
                     }

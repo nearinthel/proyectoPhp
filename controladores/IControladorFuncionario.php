@@ -13,10 +13,13 @@
 interface IControladorFuncionario {
     //put your code here
     
-       public function getInstance();
-       public function ingresarFuncionario($param);
-       public function ingresarMarca($param);
-       public function ingresarSistema($param);
+       public static function getInstance();
+      
+       public function ingresarMarca($registro, $hora,$tipo);
+      
        public function getFuncionario($registro);
+       public function agregarSupers($reg, $esSub, $esSuper, $esJefe);
+       public function obtenerInconsistencia($registro, $hora, $tipoMarca);
+       public function removerInconsistencia($hora, $registro, $tipoMarca);
                
 }
