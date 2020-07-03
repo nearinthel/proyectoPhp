@@ -171,10 +171,15 @@ date_default_timezone_set("America/Montevideo");
                                 echo "</a>";
                             }
                         }
-                        // if(isset($entradas[$ind]) and isset($salidas[$ind])){
-                        // if($entradas[$ind]->diff(($salidas[$ind]))>9){
-                        //     echo "entre";
-                        // }}
+                        if(isset($entradas[$ind]) and isset($salidas[$ind])){
+                            $aux1= ($entradas[$ind]->diff(($salidas[$ind])))->format('%H:%i');
+                            $minH= '09:00';
+                            if($aux1>=$minH){
+                                echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
+                                echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
+                                echo "</a>";
+                            }
+                        }
                         echo "</td>";
                         echo "</tr>";
                     }
