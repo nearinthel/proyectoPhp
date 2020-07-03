@@ -49,7 +49,7 @@ include_once '../clases/Funcionario.php';
         echo "<li class=".'"nav-item"'.">";
         echo "<a class=".'"nav-link"'. "href=".'"funcionario.php"'.">Ver ficha personal</a></li>";
         echo "<li class=".'"nav-item"'.">
-                <a class=".'"nav-link"'. "href=".'"../utilities/recibo3.php"'.">Ver el recibo de sueldo</a></li>";
+                <a class=".'"nav-link"'. "href=".'"../utilities/recibo.php"'.">Ver el recibo de sueldo</a></li>";
         echo "<li class=".'"nav-item"'.">
                 <a class=".'"nav-link"'. "href=".'"#"'.">Logout</a></li></ul>";
     }else{

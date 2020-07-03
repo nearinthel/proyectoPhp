@@ -64,7 +64,11 @@ date_default_timezone_set("America/Montevideo");
     $f->ingresarMarca($s6,1);
 ?>  
     <div class="bg" style="overflow: scroll">
+
+
+
         <?php include_once '../utilities/navBar.php' ?>
+
         <div class="row">
             <div class="col-sm-4">
                 <div class="container">

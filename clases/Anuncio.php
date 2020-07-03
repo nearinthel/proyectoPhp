@@ -129,7 +129,34 @@ class Anuncio implements SplSubject{
             $val = ($hadesc*$llegoH)+($hadesc*$llegom/60);//le cuento los minutos
             $func->setSueldo($func->getSueldo()-$val);//se lo mando al sueldo deberia ser al total
         }
-}
+    }
+    
+    
+    public function modSueldo(){
+        //obtengo la hra de la marca la del horario y hago la cuenta
+        $horario = $this->fm->getInconsistencia()->getHora();//hora del turno
+        $hmarca=$this->fm->getInconsistencia()->getDTM()->getHora();//hora de la marca
+        //tipo date preciso el dia
+        $func=$this->fm->getFuncionario();
+        $marca=$horario->diff($hmarca);
+        $marcaH=$llego->format('%h');//se queda con la hora que llego
+        $marcaM=$llego->format('%i');
+        if($hmarca->getDTM()->getTipo() == 0){//entrada
+            if($hmarca>$horario){//y llego tarde
+            $hadesc = $func->getCargo()->getSueldo()->getHSueldo(); 
+            $val = ($hadesc*$llegoH)+($hadesc*$llegom/60);//le cuento los minutos
+            $func->setTotal($func->getSueldo()-$val);//se lo mando al sueldo deberia ser al total
+            }
+        }elseif ($hmarca>$horario) {//salida y marco mas tarde
+            $hext = $func->getCargo()->getSueldo()->getHSueldo(); 
+            $val = ($hadesc*$llegoH)+($hadesc*$llegom/60);//le cuento los minutos
+            $func->seTotal($func->getSueldo()+$val);//se lo mando al sueldo deberia ser al total
+        }else {//se fue antes
+            $hadesc = $func->getCargo()->getSueldo()->getHSueldo(); 
+            $val = ($hadesc*$llegoH)+($hadesc*$llegom/60);//le cuento los minutos
+            $func->setTotal($func->getSueldo()-$val);//se lo mando al sueldo deberia ser al total
+        }
+    }
 
     public function licencia($dia,$func)
     {   
