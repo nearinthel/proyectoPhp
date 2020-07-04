@@ -43,6 +43,8 @@ include_once '../clases/Funcionario.php';
     $func = $con->getFuncionario($_POST['reg']);
     $_SESSION["func"] = $func;
     $_SESSION["pass"] = $passi;
+    
+    
     if($func->getPass() == $passi){
         echo "<h3 class=".'"text-white text-center"'.">Bienvenido ".$func->getNombre()." ".$func->getApellido()."<h3>";
         echo "<ul class=".'"nav nav justify-content-center"'.">";

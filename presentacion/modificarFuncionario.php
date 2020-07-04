@@ -18,7 +18,7 @@
     $registro=$_POST['funcionario'];
     
     $con= ControladorConexion::getInstance();
-    $result=$con->getFuncionarioMail($registro);
+    $result=$con->selectFuncionario($registro);
     foreach ($result as $row) {
         $reg=$row['registro'];
         $nombre=$row['nombre'];
@@ -38,7 +38,7 @@
 
     <h5 class="card-title">Modificar funcionario</h5>
     
-    <form class="form-signin" ENCTYPE = "multipart/form-data" action="" method="POST">
+    <form class="form-signin" ENCTYPE = "multipart/form-data" action="servletModificarFunc.php" method="POST">
         <input type="hidden" name="registro" value="<?php echo $registro ?>">
     <div class="row">
         <?php

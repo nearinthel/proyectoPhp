@@ -1,6 +1,7 @@
 <?php
 include '../utilities/navBar.php' ;
 include_once '../persistencia/ControladorConexion.php';
+include_once '../controladores/ControladorFuncionario.php';
 
 
         $reg=$_POST['registro'];
@@ -11,16 +12,55 @@ include_once '../persistencia/ControladorConexion.php';
         $cargo=$_POST['cargo'];
 
         $sueldo=$_POST['sueldo'];
-        $esJefe=$_POST['esJefe'];
-        $esSubordinado=$_POST['esSubordinado'];        
-        $esSupervisor=$_POST['esSupervisor'];
+        $opcion=$_POST["nivel"];
+        $esSubordinado=0; 
+        $esSupervisor=0; 
+        $esJefe=0;
+
+        switch ($opcion){
+        case "esJefe":
+            $esJefe=1;
+            break;
+        case "esSuper":
+            $esSupervisor=1;
+            break;
+        default :
+            $esSubordinado=1;
+            break;
+
+        }
+
         
         $con= ControladorConexion::getInstance();
-        $result=$con->getFuncionarioMail($reg);
+        $conFun= ControladorFuncionario::getInstance();
+        $result=$con->selectFuncionario($reg);
         foreach ($result as $row){
             $jefe=$row['esJefe'];
             $sub=$row['esSubordinado'];
             $super=$row['esSupervisor'];
         }
+        
+        
+        
+        $con->updateFun($ci, $reg, $nombre, $apellido,$mail, 
+            $cargo, $sueldo, $esSubordinado, $esSupervisor, $esJefe);
+        
+        if ($ci!=$reg){
+            $con->updateSubordinado($reg, $ci);
+        }
+        
+        if (($esJefe!=$jefe) or ($esSubordinado!=$sub) or ($esSupervisor!=super)){
+            $con->delSubordinados($reg);
+            $conFun->agregarSupers($reg, $esSubordinado, $esSupervisor, $esJefe);
+        }
+        
+        $_SESSION["msg"]="Funcionario ".$ci." ".$nombre." ".$apellido. " actualizado. <br />";
+        
+        header("Location: nivelesModificar.php");
+
+        
+        
+        
+        
         
 ?>

@@ -77,6 +77,18 @@ class ControladorConexion implements iControladorConexion {
         
     }
     
+    public function updateFun($ci, $registro, $nombre, $apellido,$mail, 
+            $cargo, $sueldo, $esSubordinado, $esSupervisor, $esJefe){
+
+        
+        $tabla= tblFuncionario::getInstance();
+         
+        $consulta=$tabla->updateFun($ci ,$registro, $nombre, $apellido,$mail, 
+                $cargo, $sueldo, $esSubordinado, $esSupervisor, $esJefe);
+        $conexion=$this->getConexion();
+        $conexion->query($consulta);
+        
+    }
     public function deleteFuncionario($registro){
         
         $tabla= tblFuncionario::getInstance();
@@ -117,12 +129,11 @@ class ControladorConexion implements iControladorConexion {
         $conexion->query($consulta);
     }
     
-    public function insertAnuncio($nroAnuncio, $descripcion){
+    public function insertAnuncio($nroAnuncio, $descripcion ,$idAnuncio, $justificacion){
         $tabla= tblAnuncio::getInstance();
-        $consulta=$tabla->insert($nroAnuncio,$descripcion);
+        $consulta=$tabla->insert($nroAnuncio,$descripcion, $idAnuncio, $justificacion);
         $conexion=$this->getConexion();
-        $conexion->query($consulta);
-        
+        $conexion->query($consulta);        
     }
     
     public function login($registro, $pass){
@@ -156,6 +167,27 @@ class ControladorConexion implements iControladorConexion {
         $conexion->query($consulta);
         
     }
+
+    public function selectAnuncio($nroAnuncio, $idAnuncio){
+        $tabla= tblAnuncio::getInstance();
+        $consulta=$tabla->select($nroAnuncio, $idAnuncio);
+        $conexion=$this->getConexion();
+        return $conexion->query($consulta);
+    }
+
+    public function selectCountAnuncio($nroAnuncio){
+        $tabla= tblAnuncio::getInstance();
+        $consulta=$tabla-> selectCountAnuncio($nroAnuncio);
+        $conexion=$this->getConexion();
+        $res = $conexion->query($consulta);
+        return $res->num_rows;
+    }
+    public function selectAnuncios(){
+        $tabla= tblAnuncio::getInstance();
+        $consulta=$tabla->selectAnuncios();
+        $conexion=$this->getConexion();
+        return $conexion->query($consulta);
+    }
     
     public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia){
         $tabla= tblMarca::getInstance();
@@ -180,9 +212,9 @@ class ControladorConexion implements iControladorConexion {
         $conexion->query($consulta);
     }
     
-    public function justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia){
+    public function justifica($nroAnuncio, $entrada, $salida, $registro, $tipoMarca, $inconsistencia){
         $tabla= tblFuncionario::getInstance();
-        $consulta=$tabla->justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia);
+        $consulta=$tabla->justifica($nroAnuncio, $entrada, $salida, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
         $conexion->query($consulta);
         
@@ -256,14 +288,7 @@ class ControladorConexion implements iControladorConexion {
 //falte meterselo al func y arreglarlo que sea en funcionario no aca
     }
     
-    public function getFuncionarioMail($registro){
-        $tabla= tblFuncionario::getInstance();
-        $consulta=$tabla->select($registro);
-        $conexion=$this->getConexion();
 
-        return $conexion->query($consulta);
-        
-    }
     
     public function getFuncionario($registro){
         $tabla= tblFuncionario::getInstance();
@@ -272,7 +297,7 @@ class ControladorConexion implements iControladorConexion {
 
         //return $conexion->query($consulta);
 
-        $res = $conexion->query($consulta);
+        $res = $conexion->query($consulta) ;
         $f = new Funcionario();
         $row = $res->fetch_assoc();
         $f->setNombre($row["nombre"]);
@@ -303,9 +328,9 @@ class ControladorConexion implements iControladorConexion {
         $tabla= tblFuncionario::getInstance();
         $consulta=$tabla->getSupervisor($registro);
         $conexion=$this->getConexion();
-
-        return $conexion->query($consulta);
-        
+        $res =$conexion->query($consulta) or die($conexion->error);
+        $row = $res->fetch_assoc();
+        return $row['regSup'];
     }
     
     public function getSupers(){
@@ -330,6 +355,28 @@ class ControladorConexion implements iControladorConexion {
         $conexion=$this->getConexion();
 
         return $conexion->query($consulta);
+        
+    }
+    
+    public function delSubordinados($reg){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->delSubordinados($reg);
+        $conexion=$this->getConexion();
+        $conexion->query($consulta);
+        
+        
+    }
+    
+    public function updateTiene($ci, $reg){
+        $tabla= tblFuncionario::getInstance();
+        $consulta=$tabla->updateTieneSupervisor($ci, $reg);
+        $conexion=$this->getConexion();
+        $conexion->query($consulta);
+        $consulta=$tabla->updateTieneSubordinado($ci,$reg);
+        $conexion->query($consulta);
+        
+        
+   
         
     }
     

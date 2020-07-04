@@ -159,14 +159,14 @@ class Funcionario implements SplObserver{
     }
     }           
      
-    public function ingresarAnuncio($nroAnuncio, $just){
-        //aca debe notificar al super
-        $a = Anuncio::ingresarAnuncio($nroAnuncio, $just);
-        $this->anuncios[$this->anuncios->count()] = $a;
+    // public function ingresarAnuncio($nroAnuncio, $just){
+    //     //aca debe notificar al super
+    //     $a = Anuncio::ingresarAnuncio($nroAnuncio,$desc, $just);
+    //     $this->anuncios[$this->anuncios->count()] = $a;
         
-        $controlador= ControladorConexion::getInstance();
-        $controlador->insertAnuncio($nroAnuncio, $just);
-    }
+    //     $controlador= ControladorConexion::getInstance();
+    //     $controlador->insertAnuncio($nroAnuncio,$desc, $just);
+    // }
 
      public function arreglarSueldo($idAnuncio)
      {
@@ -218,6 +218,5 @@ class Funcionario implements SplObserver{
 	}        
               
     }
-
 
 }

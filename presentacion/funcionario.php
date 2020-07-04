@@ -32,6 +32,7 @@ include_once '../DataTypes/DTCargo.php';
 include_once '../clases/Funcionario.php';
 date_default_timezone_set("America/Montevideo");
 
+    $_SESSION["msg"]="";
     $f = $_SESSION["func"];
     $m=new DateTime('now');
     if(!isset($_POST['mes'])){
@@ -120,8 +121,8 @@ date_default_timezone_set("America/Montevideo");
                     for ($i=1; $i <=$tope ; $i++) {
                         echo "<tr>";
                         echo "<td>";
-                        echo $i.' ';                        
-                        $fecha=$m->format("Y").'/'.$mes.'/'.$i;
+                        echo $i.' ';
+                        $fecha=$m->format("Y").'/'.$mes.'/'.$i;              
                         $d = DateTime::createFromFormat('Y/m/d',$fecha);
                         echo $d->format("D");
                         echo "</td>";
@@ -136,13 +137,15 @@ date_default_timezone_set("America/Montevideo");
                         if($i<10){
                             $ind= "0".$i;
                         }elseif($i<20){
-                            $ind= "2".$i;
-                        }else{$ind= "3".$i;}
-                        if(isset($entradas[$ind])){                            
+                            $ind= "1".$i;
+                        }else{$ind= "2".$i;}
+                        if(isset($entradas[$ind])){
+                            $_SESSION['ent']=$entradas[$ind];                            
                             echo $entradas[$ind]->format('H:i');}
                         echo "</td>";
                         echo "<td>";
                         if(isset($salidas[$ind])){
+                            $_SESSION['sal'] = $salidas[$ind];
                         echo $salidas[$ind]->format('H:i');}
                         echo "</td>";
                         echo "<td>";
@@ -161,20 +164,18 @@ date_default_timezone_set("America/Montevideo");
                                 $bandera=true;
                                 echo "Salida antes de hora";
                             }
-                        }//falta ver como hacer para que te agregue solo inconsistencia
+                        }
                         echo "</td>";
                         
                         
                         echo "<td>"; 
-                        if($bandera){
-                            $_SESSION['dia']= $d;    
+                        if($bandera){    
                             echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
                             echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
                             echo "</a>";
                             }
                         if(isset($entradas[$ind])or isset($salidas[$ind])){
                             if(($d->format("D")=='Sun')or($d->format("D")=='Sat')){
-                                $_SESSION['dia']= $d;
                                 echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
                                 echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
                                 echo "</a>";

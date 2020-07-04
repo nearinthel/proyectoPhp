@@ -6,7 +6,7 @@ $f = $_SESSION["func"];
 ?>
 <ul class="nav justify-content-end">
 <li class="nav-item">
-    <a class="nav-link" href="../index.html">Inicio</a>
+    <a class="nav-link" href="funcionario.php">Inicio</a>
 </li>
 <li>
     <a href="../utilities/recibo.php" class="nav-link" target="_blank">Ver recibo</a>

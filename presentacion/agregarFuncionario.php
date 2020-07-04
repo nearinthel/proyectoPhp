@@ -1,3 +1,6 @@
+<?php 
+include_once '../clases/Funcionario.php'; 
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +11,12 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro Personal</title>
 </head>
 <body>
 
 <div class="bg">
+
     <?php include '../utilities/navBar.php' ?>
         <!--<ul class="nav justify-content-end">
         <li class="nav-item">
@@ -40,6 +44,7 @@
             <a class="nav-link" href="logout.php">Log out</a>
         </li>
     </ul>-->
+
     <h5 class="card-title">Ingresar un nuevo funcionario</h5>
     
     <form class="form-signin" ENCTYPE = "multipart/form-data" action="ingresarFunc.php" method="POST">

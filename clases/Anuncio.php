@@ -12,6 +12,7 @@
  * @author Alberto Damelles
  */
 include_once "FuncionarioMarca.php";
+include_once '../persistencia/ControladorConexion.php';
 class Anuncio implements SplSubject{
     
     private $fm;//funcionario marca
@@ -23,31 +24,45 @@ class Anuncio implements SplSubject{
     private $storage;
     
     
-    public function __construct($nro, $desc) {
+    public function __construct($nro, $desc, $just) {
     //la descripcion es para que usarlo el nro es el que se usa id el identificador
     //para que lo cree el jefe just va en null
         $this->nroAnuncio = $nro;
         $this->descripcion=$desc;
         $this->storage = new SplObjectStorage;
+        $con = ControladorConexion::getInstance();
+        if($just==null){
+            $id=0;
+        }else{
+            $id = $con->selectCountAnuncio($nro) + 1;
+        }
+        $con->insertAnuncio($nro, $id, $desc,$just);
 //        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
 //        $this->notify();
     }
     
-    public function ingresarAnuncio($nro, $just)
+    public function ingresarAnuncio($nro,$desc, $just)
     {
-        //obtengo la descripcion de la base de datos
-        $this->id++;
-        $this->justificacion = $just;
-        //cuando se encuentra el nro anuncio en la base de datos se devuelve la descp
-        $desc="";
-        $a = new Anuncio($nro,$desc);
-        
-   
-        
-        $this->storage = new SplObjectStorage;
-        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
-        $this->notify();
-        
+        // $con = ControladorConexion::getInstance();
+        // $id= $con->selectCountAnuncio($nro);
+        // if($id > 0)
+        // $this->justificacion = $just;
+        // //cuando se encuentra el nro anuncio en la base de datos se devuelve la descp
+        // $desc="";
+        if($desc==null){
+            $con = ControladorConexion::getInstance();
+            $res =$con->selectAnuncios();
+            while($row = $res->fetch_assoc()){
+                if($row['nroAnuncio']==$nro){
+                    $desc = $row['descripcion'];
+                }
+                
+            }
+       }
+        $a = new Anuncio($nro,$desc, $just);        
+        // $this->storage = new SplObjectStorage;
+        // $this->estado=$this->nroAnuncio."".$this->getDescripcion();
+        // $this->notify();       
         return $a;   
         
     }

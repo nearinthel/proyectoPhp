@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Anuncio.php';
+include_once '../clases/Anuncio.php';
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,10 +13,12 @@ include_once 'Anuncio.php';
  *
  * @author Alberto Damelles
  */
-include_once 'Funcionario.php';
+include_once '../clases/Funcionario.php';
+include_once '../persistencia/ControladorConexion.php';
+// include_once 'IControladorAnuncio.php';
 
 
-class ControladorAnuncio implements IControladorAnuncio {
+class ControladorAnuncio {
     
     private static $instance;
     
@@ -37,9 +39,14 @@ class ControladorAnuncio implements IControladorAnuncio {
         $f->arreglarSueldo($id);
         $a->borrarInconsistencia();        
     }
-    public function ingresarAnuncio($num, $just,$emp){
-        $super = $emp->getSupervisor();
-        $emp->ingresarAnuncio($num, $just);
+    public function ingresarAnuncio($num, $just,$emp, $entrada, $salida){
+        $con = ControladorConexion::getInstance();
+        $super = $con->getSupervisor($emp->getRegistro());//el registro del super
+        //aca va notificar
+        $a= Anuncio::ingresarAnuncio($num,"", $just);
         
+        $con->justifica($a->getNroAnuncio(), $entrada, $salida, $emp->getRegistro(), "", "1");
+        return $a;
+        // si la hora es now es por licencia
     }
 }

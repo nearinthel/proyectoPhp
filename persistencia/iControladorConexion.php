@@ -24,7 +24,7 @@ interface iControladorConexion {
     
     public function agregarSubordinado($primerRegistro, $segundoRegistro);
     
-    public function insertAnuncio($nroAnuncio, $descripcion);
+    public function insertAnuncio($nroAnuncio, $descripcion ,$idAnuncio, $justificacion);
 
     public function updateAnuncio($nroAnuncio, $descripcion);
 
@@ -34,14 +34,18 @@ interface iControladorConexion {
     
     public function updateMarca($hora, $registro, $tipoMarca,$mes, $anio, $inconsistencia);
 
-    public function justificar($nroAnuncio, $hora, $registro, $tipoMarca, $inconsistencia);
+    public function justifica($nroAnuncio, $entrada, $salida, $registro, $tipoMarca, $inconsistencia);
 
     public function noJustificar($nroAnuncio, $hora, $registro, $tipoMarca);
 
     public function aceptarAnuncio($regSup, $nroAnuncio);
 
-    public function noAceptarAnuncio($regSup, $nroAnuncio);    
-    public function getFuncionarioMail($registro);
+    public function noAceptarAnuncio($regSup, $nroAnuncio);
+    
+    public function selectFuncionario($registro);
     
     public function getSupervisor($registro);
+    
+    public function updateFun($ci, $registro, $nombre, $apellido,$mail, 
+            $cargo, $sueldo, $esSubordinado, $esSupervisor, $esJefe);
 }

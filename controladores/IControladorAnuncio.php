@@ -17,5 +17,5 @@ interface IControladorAnuncio {
     
     public function getInstance();
     public function aceptarAnuncio($param);
-    public function ingresarAnuncio($param);
+    public function ingresarAnuncio($num, $just,$emp, $hora);
 }

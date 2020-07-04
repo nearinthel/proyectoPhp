@@ -19,7 +19,7 @@ try{
     foreach ($result as $row){
         $sup=$row["regSup"];
     }
-    $resultado=$controlador->getFuncionarioMail($sup);
+    $resultado=$controlador->selectFuncionario($sup);
     echo "busco funcionario";
     
     foreach ($resultado as $row) {
