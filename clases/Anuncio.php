@@ -41,7 +41,7 @@ class Anuncio implements SplSubject{
 //        $this->notify();
     }
     
-    public function ingresarAnuncio($nro,$desc, $just)
+    public static function ingresarAnuncio($nro,$desc, $just)
     {
         // $con = ControladorConexion::getInstance();
         // $id= $con->selectCountAnuncio($nro);
@@ -82,10 +82,9 @@ class Anuncio implements SplSubject{
     }
     public function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
-        echo $this->descripcion;
-       // $this->storage = new SplObjectStorage;
-        $this->estado="Numero de Anuncio:" .$this->nroAnuncio." Descricpcion: ".$this->getDescripcion();
-        $this->notify();
+        
+       
+
 
     }
 
@@ -206,6 +205,12 @@ class Anuncio implements SplSubject{
     function getEstado() {
         return $this->estado;
     }
+    
+    function setEstado($estado) {
+        $this->estado = $estado;
+    }
+
+
 
 
 

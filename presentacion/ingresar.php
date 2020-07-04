@@ -5,9 +5,14 @@ include_once '../clases/Funcionario.php';
     
     //include_once '../controladores/ControladorFuncionario.php';
     include_once '../persistencia/ControladorConexion.php';
+    include_once '../utilities/password.php';
    
     $passi= $_POST['pass'];
     
+        
+    $contPass= Password::getInstance();
+    
+    $passi=$contPass->hash($passi);
     // if(!isset($_COOKIE['reg'])){
         if(isset($_POST['check'])){
             $con = ControladorConexion::getInstance();

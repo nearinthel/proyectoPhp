@@ -88,9 +88,7 @@ session_start(); ?>
             <option value="esJefe">Jefe</option>
             <option value="esSuper">Supervisor</option>
             <option value="esSub">Empleado</option>
-            <!--<option value="esSub">Cajero</option>
-            <option value="esSub">Operario</option>
-            <option value="esSub">Administrativo</option>-->
+
         </select>
     </div>
     <div class="form-label-group">

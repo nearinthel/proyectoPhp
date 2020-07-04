@@ -15,6 +15,7 @@ include_once '../clases/Anuncio.php';
  */
 include_once '../clases/Funcionario.php';
 include_once '../persistencia/ControladorConexion.php';
+
 // include_once 'IControladorAnuncio.php';
 
 
@@ -41,12 +42,28 @@ class ControladorAnuncio {
     }
     public function ingresarAnuncio($num, $just,$emp, $entrada, $salida){
         $con = ControladorConexion::getInstance();
-        $super = $con->getSupervisor($emp->getRegistro());//el registro del super
+        //$super = $con->getSupervisor($emp->getRegistro());//el registro del super
         //aca va notificar
         $a= Anuncio::ingresarAnuncio($num,"", $just);
-        
         $con->justifica($a->getNroAnuncio(), $entrada, $salida, $emp->getRegistro(), "", "1");
-        return $a;
         // si la hora es now es por licencia
+        try{
+            $empleado=new Funcionario();
+            $result=$con->getSupervisor($emp->getRegistro());
+            foreach ($result as $row){
+                $sup=$row["regSup"];
+            }
+            $resultado=$con->selectFuncionario($sup);          
+            foreach ($resultado as $row) {
+                $empleado->setRegistro($row["registro"]);
+                $empleado->setMail($row["mail"]);
+            }
+            $a->attach($empleado);
+            $a->setEStado("Numero de Anuncio:" .$num." Descricpcion: ".$just);
+            $a->notify();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return $a;
     }
 }

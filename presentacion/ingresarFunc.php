@@ -23,6 +23,7 @@ include_once '../clases/Funcionario.php';
     include_once '../controladores/ControladorFuncionario.php';
     include_once '../persistencia/ControladorConexion.php';
     include_once '../utilities/navBar.php';
+    include_once '../utilities/password.php';
 
 
     $f = $_SESSION["func"];
@@ -64,8 +65,13 @@ include_once '../clases/Funcionario.php';
         break;
         
     }
+    
+    $contPass= Password::getInstance();
+    $pass=$_POST['pass'];
+    
+    $pass=$contPass->hash($pass);
     //echo $_POST['fnac'];//->format('Y-m-d H:i:s');
-    $con->insertFuncionario($_POST['ci'], $_POST['pass'], $_POST['name'], $_POST['lname'],$_POST['mail'], $_POST['fnac'], 
+    $con->insertFuncionario($_POST['ci'], $pass, $_POST['name'], $_POST['lname'],$_POST['mail'], $_POST['fnac'], 
             $fing, $_POST["cargo"], $_POST['sueldo'], $entrada, $salida, $esSubordinado, $esSupervisor, $esJefe);
     $instancia= ControladorFuncionario::getInstance();
    $instancia->agregarSupers($_POST['ci'],$esSubordinado, $esSupervisor, $esJefe);

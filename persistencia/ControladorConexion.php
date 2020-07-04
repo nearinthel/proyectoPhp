@@ -190,9 +190,11 @@ class ControladorConexion implements iControladorConexion {
     }
     
     public function insertMarca($hora, $registro, $tipoMarca, $inconsistencia){
+        
         $tabla= tblMarca::getInstance();
         $consulta=$tabla->insert($hora, $registro, $tipoMarca, $inconsistencia);
         $conexion=$this->getConexion();
+        
         $conexion->query($consulta);
         
     }
