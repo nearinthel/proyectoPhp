@@ -1,6 +1,3 @@
-<?php 
-include_once '../clases/Funcionario.php'; 
-//session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,10 +15,9 @@ include_once '../clases/Funcionario.php';
 
 
 
-<?php include_once '../utilities/navBar.php' ?>
-    
-<?php
-
+<?php 
+include_once '../utilities/navBar.php';
+include_once '../clases/Funcionario.php'; 
 include_once '../clases/FuncionarioMarca.php';
 include_once '../clases/Marca.php';
 include '../utilities/numAMeses.php';
@@ -34,6 +30,7 @@ date_default_timezone_set("America/Montevideo");
 
     $_SESSION["msg"]="";
     $f = $_SESSION["func"];
+
     $m=new DateTime('now');
     if(!isset($_POST['mes'])){
         $mes=$m->format("m");
@@ -44,7 +41,7 @@ date_default_timezone_set("America/Montevideo");
         $numes = numAMeses::mes($mes);
      }
     $fma='Y-m-d H:i:s';
-    $e1= DateTime::createFromFormat($fma,'2020-06-01 08:00:00');
+   /* $e1= DateTime::createFromFormat($fma,'2020-06-01 08:00:00');
     $e2= DateTime::createFromFormat($fma,'2020-06-02 07:34:34');
     $e3= DateTime::createFromFormat($fma,'2020-06-03 07:56:04');
     $e4= DateTime::createFromFormat($fma,'2020-06-04 08:03:44');
@@ -67,13 +64,8 @@ date_default_timezone_set("America/Montevideo");
     $f->ingresarMarca($s3,1);
     $f->ingresarMarca($s4,1);
     $f->ingresarMarca($s5,1);
-    $f->ingresarMarca($s6,1);
-?>  
-    <!--<div class="bg" style="overflow: scroll">-->
-
-
-
-        <?php //include_once '../utilities/navBar.php' ?>
+    $f->ingresarMarca($s6,1);*/
+?>
 
         <div class="row">
             <div class="col-sm-4">
@@ -170,13 +162,13 @@ date_default_timezone_set("America/Montevideo");
                         
                         echo "<td>"; 
                         if($bandera){    
-                            echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
+                            echo "<a class=".'"nav-link"'. "href=".'listadodeInconsistencias.php'.">";
                             echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
                             echo "</a>";
                             }
                         if(isset($entradas[$ind])or isset($salidas[$ind])){
                             if(($d->format("D")=='Sun')or($d->format("D")=='Sat')){
-                                echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
+                                echo "<a class=".'"nav-link"'. "href=".'listadodeInconsistencias.php'.">";
                                 echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
                                 echo "</a>";
                             }
@@ -185,7 +177,7 @@ date_default_timezone_set("America/Montevideo");
                             $aux1= ($entradas[$ind]->diff(($salidas[$ind])))->format('%H:%i');
                             $minH= '09:00';
                             if($aux1>=$minH){
-                                echo "<a class=".'"nav-link"'. "href=".'"ingAnuncio.php"'.">";
+                                echo "<a class=".'"nav-link"'. "href=".'listadodeInconsistencias.php'.">";
                                 echo "<img src=".'"../img/iconoAnuncio.png"'."alt=".'"icono"'."style=".'"width:81px;heigth:52px"'.">";
                                 echo "</a>";
                             }

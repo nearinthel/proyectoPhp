@@ -66,4 +66,32 @@ class ControladorAnuncio {
         }
         return $a;
     }
+    
+        public function ingAnuncio($hora, $reg, $desc){
+        $con = ControladorConexion::getInstance();
+        //$super = $con->getSupervisor($emp->getRegistro());//el registro del super
+        //aca va notificar
+        //$a= Anuncio::ingresarAnuncio($num,"", $just);
+        //$con->justifica($a->getNroAnuncio(), $entrada, $salida, $emp->getRegistro(), "", "1");
+        $con->insertAnuncios($hora, $reg, $desc);
+        // si la hora es now es por licencia
+        try{
+            $empleado=new Funcionario();
+            $result=$con->getSupervisor($reg);
+            foreach ($result as $row){
+                $sup=$row["regSup"];
+            }
+            $resultado=$con->selectFuncionario($sup);          
+            foreach ($resultado as $row) {
+                $empleado->setRegistro($row["registro"]);
+                $empleado->setMail($row["mail"]);
+            }
+            $a->attach($empleado);
+            $a->setEStado("Numero de Anuncio:" .$num." Descricpcion: ".$just);
+            $a->notify();
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+        }
+        return $a;
+    }
 }

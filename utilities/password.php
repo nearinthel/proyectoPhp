@@ -14,7 +14,7 @@
 
 class Password {    
     
-    private $salt;
+    private $salt="phprecibos";
     private static $instance;
     
     
@@ -28,11 +28,11 @@ class Password {
     }
     
     private function __construct() {
-        $archivo="../config/config.ini";
+        //$archivo="../config/config.ini";
         
-        $contenido= parse_ini_file($archivo, false);
+        //$contenido= parse_ini_file($archivo, false);
 
-        $this->salt=$contenido["salt"];
+        //$this->salt=$contenido["salt"];
 
     }
 

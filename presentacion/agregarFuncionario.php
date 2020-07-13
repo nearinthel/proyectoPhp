@@ -1,6 +1,6 @@
 <?php 
 include_once '../clases/Funcionario.php'; 
-session_start(); ?>
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,32 +18,7 @@ session_start(); ?>
 <div class="bg">
 
     <?php include '../utilities/navBar.php' ?>
-        <!--<ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link" href="../presentacion/funcionario.php">Planilla</a>
-        </li>
-        <li>
-            <a href="../utilities/recibo.php" class="nav-link">Ver recibo</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-            Bandeja de Anuncios
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-            Crear Anuncio
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">
-            Modificar Funcionario
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="logout.php">Log out</a>
-        </li>
-    </ul>-->
+
 
     <h5 class="card-title">Ingresar un nuevo funcionario</h5>
     

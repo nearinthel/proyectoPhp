@@ -22,9 +22,10 @@ and open the template in the editor.
         <form class="form-signin" ENCTYPE = "multipart/form-data" action="listarFuncionario.php" method="POST">
         
       
-        <?php echo $_SESSION["msg"]; ?>
+        
              <div class='col-sm-8'>
                 <div class='container' >
+                    <h2><?php echo $_SESSION["msg"]; ?></h2>
                     <h1 class='text-center'>Niveles a actualizar</h1>
                 </div>
              </div>

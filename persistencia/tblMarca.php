@@ -68,7 +68,21 @@ class tblMarca {
     {
         $sql="SELECT * FROM marcas WHERE registro='$registro' AND tipoMarca='$tipoMarca' AND
             mes='$mes' AND anio='$anio'";
+        
         return $sql;
     }
+    
+        public function getInconsistencia($registro, $inc){
+        
+        $sql="SELECT * FROM marcas WHERE registro='$registro' AND inconsistencia='$inc'";
+        
+        return $sql;
+        
+    }
+      
+    
+
+    
+
 
 }

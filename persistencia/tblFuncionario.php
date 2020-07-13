@@ -138,7 +138,7 @@ class tblFuncionario {
     }
     
     public function delSubordinados($reg){
-        $sql="delete from tiene where reSub='$reg' or regSup='$reg'";
+        $sql="delete from tiene where regSub='$reg' or regSup='$reg'";
         return $sql;
     }
     
@@ -154,6 +154,7 @@ class tblFuncionario {
         return $sql;
         
     }
-                
+    
+          
 
 }

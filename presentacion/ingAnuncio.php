@@ -1,6 +1,6 @@
 <?php
 include_once '../clases/Funcionario.php';
-session_id("elfun"); 
+//session_id("elfun"); 
 //session_start();
 ?>
 

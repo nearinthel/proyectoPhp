@@ -126,6 +126,7 @@ class ControladorConexion implements iControladorConexion {
         $tabla= tblFuncionario::getInstance();
         $consulta=$tabla->agregarSubordinado($regSuper, $regSub);
         $conexion=$this->getConexion();
+        echo $consulta. "<br />";
         $conexion->query($consulta);
     }
     
@@ -331,8 +332,9 @@ class ControladorConexion implements iControladorConexion {
         $consulta=$tabla->getSupervisor($registro);
         $conexion=$this->getConexion();
         $res =$conexion->query($consulta) or die($conexion->error);
-        $row = $res->fetch_assoc();
-        return $row['regSup'];
+       // $row = $res->fetch_assoc();
+        //return $row['regSup'];
+        return $res;
     }
     
     public function getSupers(){
@@ -363,10 +365,23 @@ class ControladorConexion implements iControladorConexion {
     public function delSubordinados($reg){
         $tabla= tblFuncionario::getInstance();
         $consulta=$tabla->delSubordinados($reg);
+        
         $conexion=$this->getConexion();
         $conexion->query($consulta);
         
         
+    }
+    
+    public function getMarcasInconsistentes($reg){
+        $tabla= tblMarca::getInstance();
+        $consulta=$tabla->getInconsistencia($reg, 1);
+
+        $conexion=$this->getConexion();
+
+        return $conexion->query($consulta);
+        
+        
+      
     }
     
     public function updateTiene($ci, $reg){
@@ -376,12 +391,20 @@ class ControladorConexion implements iControladorConexion {
         $conexion->query($consulta);
         $consulta=$tabla->updateTieneSubordinado($ci,$reg);
         $conexion->query($consulta);
-        
-        
-   
+     
         
     }
     
+        public function insertAnuncios($hora, $reg, $desc){
+        $tabla= tblAnuncio::getInstance();
+        $consulta=$tabla->insertAnuncios($hora, $reg, $desc);
+        $conexion=$this->getConexion();
+
+        $conexion->query($consulta);
+            
+        }
+    
+
     
     
    

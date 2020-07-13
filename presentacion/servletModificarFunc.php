@@ -1,5 +1,5 @@
 <?php
-include '../utilities/navBar.php' ;
+
 include_once '../persistencia/ControladorConexion.php';
 include_once '../controladores/ControladorFuncionario.php';
 
@@ -42,14 +42,23 @@ include_once '../controladores/ControladorFuncionario.php';
         
         
         
-        $con->updateFun($ci, $reg, $nombre, $apellido,$mail, 
+        $con->updateFun($reg,$ci, $nombre, $apellido,$mail, 
             $cargo, $sueldo, $esSubordinado, $esSupervisor, $esJefe);
         
+        echo $jefe;
+        echo $super;
+        echo $sub;
+        echo $esJefe;
+        echo $esSupervisor;
+        echo $esSubordinado;
+        
+        
         if ($ci!=$reg){
-            $con->updateSubordinado($reg, $ci);
+            $con->updateTiene($reg, $ci);
+            
         }
         
-        if (($esJefe!=$jefe) or ($esSubordinado!=$sub) or ($esSupervisor!=super)){
+        if (($esJefe!=$jefe) or ($esSubordinado!=$sub) or ($esSupervisor!=$super)){
             $con->delSubordinados($reg);
             $conFun->agregarSupers($reg, $esSubordinado, $esSupervisor, $esJefe);
         }
@@ -57,10 +66,6 @@ include_once '../controladores/ControladorFuncionario.php';
         $_SESSION["msg"]="Funcionario ".$ci." ".$nombre." ".$apellido. " actualizado. <br />";
         
         header("Location: nivelesModificar.php");
+        
+        
 
-        
-        
-        
-        
-        
-?>

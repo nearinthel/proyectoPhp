@@ -1,6 +1,6 @@
 <?php
 
-include_once 'Funcionario.php';
+include_once '../clases/Funcionario.php';
 include_once "../persistencia/IControladorConexion.php";
 
 include_once "../persistencia/ControladorConexion.php";
@@ -126,24 +126,40 @@ class ControladorFuncionario implements IControladorFuncionario {
             foreach ($res as $row) {
                 $regSuper=$row["registro"];
                 $con->agregarSubordinado($regSuper, $reg);
+                //echo $regSuper.$reg;
+            }
+            $res->getJefes();
+            foreach ($res as $row) {
+                $regJefe=$row["registro"];
+                $con->agregarSubordinado($regJefe, $reg);
+                
             }
         }elseif($esSuper==1){
             $res=$con->getJefes();
             foreach ($res as $row) {
                 $regJefe=$row["registro"];
                 $con->agregarSubordinado($regJefe, $reg);
+                //echo $regJefe.$reg;
             }
             $res=$con->getSubs();
             foreach ($res as $row) {
                 $regSub=$row["registro"];
                 $con->agregarSubordinado($reg, $regSub);
+                //echo $regSub.$reg;
             }        
         }elseif($esJefe==1){
             $res=$con->getSupers();
             foreach ($res as $row) {
                 $regSuper=$row["registro"];
                 $con->agregarSubordinado($reg, $regSuper);
+                //echo $regSuper.$reg;
             }
+            $res=$con->getSubs();
+            foreach ($res as $row) {
+                $regSub=$row["registro"];
+                $con->agregarSubordinado($reg, $regSub);
+                //echo $regSub.$reg;
+            }   
         }
     }
     

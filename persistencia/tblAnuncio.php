@@ -14,7 +14,7 @@
 class tblAnuncio {
     //put your code here
     
-        private static $instance;
+    private static $instance;
     private function __construct() {
         
     }
@@ -33,6 +33,13 @@ class tblAnuncio {
              
         $sql ="INSERT INTO anuncio (nroAnuncio,descripcion,idAnuncio,justificacion) VALUES 
             ('$nroAnuncio', '$descripcion' , '$idAnuncio' , '$justificacion')";
+        return $sql;
+    }
+    
+    public function insertAnuncios($hora, $reg, $desc){
+             
+        $sql ="INSERT INTO anuncios (registro, hora, descripcion) VALUES 
+            ('$reg','$hora' ,'$desc')";
         return $sql;
     }
   
@@ -66,6 +73,20 @@ class tblAnuncio {
         $sql="SELECT nroAnuncio, descripcion FROM anuncio WHERE idAnuncio=0";        
         return $sql; 
     }
+    
+    public function getInconsistencia($registro, $inc){
+        
+        //$sql="SELECT * FROM marcas WHERE registro='$registro' AND inconsistencia='$inc'";
+        //$sql="SELECT * FROM marcas inconsistencia='$inc'";
+        //$sql="SELECT * FROM funcionario WHERE registro='$registro'";// AND inconsistencia='$inc'";
+        $sql="select * from funcionario where registro='$registro'";
+        //$sql="SELECT nroAnuncio, descripcion FROM anuncio WHERE idAnuncio=0"; 
+        return $sql;
+        
+        
+    }
+    
+
     
 
 }

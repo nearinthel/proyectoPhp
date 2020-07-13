@@ -43,6 +43,12 @@ try{
     //$anuncio->ingresarAnuncio(1, "puto el que lo lea");
     
     //echo "puto 3";
+    $result=$controlador->getMarcasInconsistentes($sup);
+    foreach ($result as $value) {
+        
+        echo $value['registro'];
+        
+    }
     
     
     
