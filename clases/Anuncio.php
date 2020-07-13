@@ -24,22 +24,28 @@ class Anuncio implements SplSubject{
     private $storage;
     
     
-    public function __construct($nro, $desc, $just) {
-    //la descripcion es para que usarlo el nro es el que se usa id el identificador
-    //para que lo cree el jefe just va en null
-        $this->nroAnuncio = $nro;
-        $this->descripcion=$desc;
+//    public function __construct($nro, $desc, $just) {
+//    //la descripcion es para que usarlo el nro es el que se usa id el identificador
+//    //para que lo cree el jefe just va en null
+//        $this->nroAnuncio = $nro;
+//        $this->descripcion=$desc;
+//        $this->storage = new SplObjectStorage;
+//        $con = ControladorConexion::getInstance();
+//        if($just==null){
+//            $id=0;
+//        }else{
+//            $id = $con->selectCountAnuncio($nro) + 1;
+//        }
+//        $con->insertAnuncio($nro, $id, $desc,$just);
+////        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
+////        $this->notify();
+//    }
+    
+    function __construct() {
         $this->storage = new SplObjectStorage;
-        $con = ControladorConexion::getInstance();
-        if($just==null){
-            $id=0;
-        }else{
-            $id = $con->selectCountAnuncio($nro) + 1;
-        }
-        $con->insertAnuncio($nro, $id, $desc,$just);
-//        $this->estado=$this->nroAnuncio."".$this->getDescripcion();
-//        $this->notify();
+        
     }
+
     
     public static function ingresarAnuncio($nro,$desc, $just)
     {

@@ -86,6 +86,11 @@ class tblAnuncio {
         
     }
     
+    public function getAnuncios(){
+        $sql="select * from anuncios";
+        return $sql;
+    }
+    
 
     
 

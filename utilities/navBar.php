@@ -12,14 +12,14 @@ $f = $_SESSION["func"];
     <a href="../utilities/recibo.php" class="nav-link" target="_blank">Ver recibo</a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getLevel()=="esJefe")or
+    <a class="nav-link" href="bandejaAnuncios.php" style=<?php if(($f->getCargo()->getLevel()=="esJefe")or
                                                 ($f->getCargo()->getLevel()=="esSuper"))
                                                     {echo '';}else{echo '"display:none"';} ?>>
     Bandeja de Anuncios
     </a>
 </li>
 <li class="nav-item">
-    <a class="nav-link" href="#" style=<?php if(($f->getCargo()->getLevel()!="esJefe"))
+    <a class="nav-link" href="" style=<?php if(($f->getCargo()->getLevel()!="esJefe"))
                                                 {echo '"display:none"';}?>>
     Crear Anuncio
     </a>

@@ -76,6 +76,7 @@ class ControladorAnuncio {
         $con->insertAnuncios($hora, $reg, $desc);
         // si la hora es now es por licencia
         try{
+            $a=new Anuncio();
             $empleado=new Funcionario();
             $result=$con->getSupervisor($reg);
             foreach ($result as $row){
@@ -85,13 +86,17 @@ class ControladorAnuncio {
             foreach ($resultado as $row) {
                 $empleado->setRegistro($row["registro"]);
                 $empleado->setMail($row["mail"]);
+                echo $row["registro"]."<br/>";
+                echo $empleado->getRegistro();
             }
             $a->attach($empleado);
-            $a->setEStado("Numero de Anuncio:" .$num." Descricpcion: ".$just);
+            $a->setEStado("Numero de Anuncio:" .$hora." Descricpcion: ".$desc." del funcionario". $reg);
             $a->notify();
         } catch (Exception $ex) {
             echo $ex->getMessage();
         }
         return $a;
     }
+    
+    
 }

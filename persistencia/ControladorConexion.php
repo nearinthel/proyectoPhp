@@ -404,6 +404,13 @@ class ControladorConexion implements iControladorConexion {
             
         }
     
+        
+        public function getAnuncios(){
+            $tabla= tblAnuncio::getInstance();
+            $consulta=$tabla->getAnuncios();
+            $conexion=$this->getConexion();
+            return $conexion->query($consulta);
+        }
 
     
     
