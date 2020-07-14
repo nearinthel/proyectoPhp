@@ -128,7 +128,7 @@ class ControladorFuncionario implements IControladorFuncionario {
                 $con->agregarSubordinado($regSuper, $reg);
                 //echo $regSuper.$reg;
             }
-            $res->getJefes();
+            $res=$con->getJefes();
             foreach ($res as $row) {
                 $regJefe=$row["registro"];
                 $con->agregarSubordinado($regJefe, $reg);

@@ -129,7 +129,7 @@ date_default_timezone_set("America/Montevideo");
                         if($i<10){
                             $ind= "0".$i;
                         }elseif($i<20){
-                            $ind= "1".$i;
+                            $ind= $i;
                         }else{$ind= "2".$i;}
                         if(isset($entradas[$ind])){
                             $_SESSION['ent']=$entradas[$ind];                            
